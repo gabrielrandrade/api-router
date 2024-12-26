@@ -7,6 +7,8 @@ import { useState } from "react";
 import TouchableBounce from "@/components/ui/TouchableBounce.native";
 import Skeleton from "@/components/ui/Skeleton";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import { FormList } from "@/components/ui/FormList";
+import { FormItem } from "@/components/ui/Form";
 
 export default function Page() {
   return (
@@ -31,6 +33,32 @@ export default function Page() {
           <IconSymbol name="star.bubble.fill" color={AC.systemCyan} />
         </View>
       </View>
+
+      <FormScroll />
+    </BodyScrollView>
+  );
+}
+
+function FormScroll() {
+  return (
+    <BodyScrollView
+      contentContainerStyle={{
+        padding: 16,
+        gap: 16,
+      }}
+    >
+      <FormList>
+        <FormItem>
+          <View style={{ gap: 4 }}>
+            <Text style={{ color: AC.label, fontSize: 18, fontWeight: "600" }}>
+              Results
+            </Text>
+            <Text style={{ color: AC.secondaryLabel, fontSize: 16 }}>
+              {"No results yet"}
+            </Text>
+          </View>
+        </FormItem>
+      </FormList>
     </BodyScrollView>
   );
 }
