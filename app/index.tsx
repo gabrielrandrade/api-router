@@ -1,5 +1,5 @@
 import { BodyScrollView } from "@/components/ui/BodyScrollView";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, OpaqueColorValue, StyleSheet, View } from "react-native";
 
 import * as AC from "@bacons/apple-colors";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -61,6 +61,47 @@ export default function Page() {
         >
           Setup Instructions
         </Link>
+      </FormList>
+
+      <FormList>
+        <Link
+          style={{
+            color: AC.link,
+          }}
+          href="/two"
+        >
+          <FormLabel
+            onPress={() => {
+              console.log("hey");
+            }}
+            systemImage="photo.on.rectangle"
+          >
+            Select multiple
+          </FormLabel>
+        </Link>
+      </FormList>
+
+      <FormList>
+        <HStack style={{ gap: 16 }}>
+          <Image
+            source={{ uri: "https://github.com/evanbacon.png" }}
+            style={{
+              aspectRatio: 1,
+              height: 48,
+              borderRadius: 999,
+            }}
+          />
+          <View style={{ gap: 4 }}>
+            <Form.Text style={FormFont.default}>Evan's iPhone</Form.Text>
+            <Form.Text style={FormFont.caption}>
+              This iPhone 16 Pro Max
+            </Form.Text>
+          </View>
+
+          <View style={{ flex: 1 }} />
+
+          <IconSymbol name="person.fill.badge.plus" size={24} />
+        </HStack>
       </FormList>
 
       <FormList>
@@ -140,10 +181,11 @@ export default function Page() {
         <Link href="https://expo.dev">Expo</Link>
 
         <Link href="/two">
-          <FormLabel systemImage="photo.on.rectangle">
-            Select multiple
+          <FormLabel color={AC.label} systemImage="star">
+            Stars
           </FormLabel>
         </Link>
+
         <Link href="/two" hint={"Normal"}>
           Pick a value
         </Link>
@@ -169,15 +211,17 @@ export default function Page() {
 function FormLabel({
   children,
   systemImage,
+  color,
 }: {
   /** Only used when `<FormLabel />` is a direct child of `<FormList />`. */
   onPress?: () => void;
   children: React.ReactNode;
   systemImage: ComponentProps<typeof IconSymbol>["name"];
+  color?: OpaqueColorValue;
 }) {
   return (
     <HStack style={{ gap: 16 }}>
-      <IconSymbol name={systemImage} size={28} color={AC.systemBlue} />
+      <IconSymbol name={systemImage} size={28} color={color ?? AC.systemBlue} />
       <Text style={FormFont.default}>{children}</Text>
     </HStack>
   );
