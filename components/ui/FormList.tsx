@@ -73,6 +73,23 @@ export function FormList({
           }
         );
 
+        const hintView = (() => {
+          if (!child.props.hint) {
+            return null;
+          }
+
+          return React.Children.map(child.props.hint, (child) => {
+            // Filter out empty children
+            if (!child) {
+              return null;
+            }
+            if (typeof child === "string") {
+              return <Text style={FormFont.secondary}>{child}</Text>;
+            }
+            return child;
+          });
+        })();
+
         child = React.cloneElement(child, {
           style: [FormFont.default, child.props.style],
           numberOfLines: 1,
@@ -83,7 +100,10 @@ export function FormList({
               <HStack>
                 {wrappedTextChildren}
                 <View style={{ flex: 1 }} />
-                <LinkChevronIcon href={child.props.href} />
+                {hintView}
+                <View style={{ paddingLeft: 12 }}>
+                  <LinkChevronIcon href={child.props.href} />
+                </View>
               </HStack>
             </FormItem>
           ),

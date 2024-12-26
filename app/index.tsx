@@ -90,6 +90,9 @@ export default function Page() {
             Select multiple
           </FormLabel>
         </Link>
+        <Link href="/two" hint={"Normal"}>
+          Pick a value
+        </Link>
       </FormList>
 
       <FormList>
