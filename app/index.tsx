@@ -1,5 +1,5 @@
 import { BodyScrollView } from "@/components/ui/BodyScrollView";
-import { Image, OpaqueColorValue, StyleSheet, View } from "react-native";
+import { Image, OpaqueColorValue, Text, StyleSheet, View } from "react-native";
 
 import * as AC from "@bacons/apple-colors";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -7,7 +7,7 @@ import { ComponentProps, useState } from "react";
 import TouchableBounce from "@/components/ui/TouchableBounce.native";
 import Skeleton from "@/components/ui/Skeleton";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import { FormFont, FormList, Text } from "@/components/ui/FormList";
+import { FormFont, FormList } from "@/components/ui/FormList";
 import * as Form from "@/components/ui/FormList";
 import { FormItem, HStack } from "@/components/ui/Form";
 import { Link } from "expo-router";
