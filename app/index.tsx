@@ -76,6 +76,8 @@ export default function Page() {
       <FormList>
         {/* Table style: | A   B |*/}
         <Link href="/two">Two</Link>
+        <Link href="https://expo.dev">Expo</Link>
+
         <Link href="/two">
           <FormLabel systemImage="photo.on.rectangle">
             Select multiple

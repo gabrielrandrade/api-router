@@ -71,30 +71,38 @@ export function FormList({ children, ...props }: ViewProps) {
           numberOfLines: 1,
           adjustsFontSizeToFit: true,
           asChild: true,
-          children: isTextOnly ? (
+          children: (
             <FormItem>
               <HStack>
                 {wrappedTextChildren}
                 <View style={{ flex: 1 }} />
-                <IconSymbol
-                  name="chevron.right"
-                  size={14}
-                  weight="bold"
-                  // from xcode, not sure which color is the exact match
-                  // #BFBFBF
-                  // #9D9DA0
-                  color={AppleColors.tertiaryLabel}
-                />
+                <LinkChevronIcon href={child.props.href} />
               </HStack>
             </FormItem>
-          ) : (
-            <FormItem>{wrappedTextChildren}</FormItem>
           ),
+          // children: isTextOnly ? (
+          //   <FormItem>
+          //     <HStack>
+          //       {wrappedTextChildren}
+          //       <View style={{ flex: 1 }} />
+          //       <IconSymbol
+          //         name="chevron.right"
+          //         size={14}
+          //         weight="bold"
+          //         // from xcode, not sure which color is the exact match
+          //         // #BFBFBF
+          //         // #9D9DA0
+          //         color={AppleColors.tertiaryLabel}
+          //       />
+          //     </HStack>
+          //   </FormItem>
+          // ) : (
+          //   <FormItem>{wrappedTextChildren}</FormItem>
+          // ),
         });
       }
       // Ensure child is a FormItem otherwise wrap it in a FormItem
       if (!wrapsFormItem && child.type !== FormItem) {
-        console.log("child", originalOnPress);
         child = <FormItem onPress={originalOnPress}>{child}</FormItem>;
       }
 
@@ -121,6 +129,36 @@ export function FormList({ children, ...props }: ViewProps) {
         props.style,
       ]}
       children={childrenWithSeparator}
+    />
+  );
+}
+
+function LinkChevronIcon({ href }: { href?: any }) {
+  const isHrefExternal =
+    typeof href === "string" && /^([\w\d_+.-]+:)?\/\//.test(href);
+
+  if (isHrefExternal) {
+    return (
+      <IconSymbol
+        name="arrow.up.right"
+        size={14}
+        weight="bold"
+        // from xcode, not sure which color is the exact match
+        // #BFBFBF
+        // #9D9DA0
+        color={AppleColors.tertiaryLabel}
+      />
+    );
+  }
+  return (
+    <IconSymbol
+      name="chevron.right"
+      size={14}
+      weight="bold"
+      // from xcode, not sure which color is the exact match
+      // #BFBFBF
+      // #9D9DA0
+      color={AppleColors.tertiaryLabel}
     />
   );
 }
