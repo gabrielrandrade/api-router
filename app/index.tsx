@@ -14,7 +14,6 @@ import { Link } from "expo-router";
 export default function Page() {
   return (
     <BodyScrollView
-      style={{ backgroundColor: AC.secondarySystemBackground }}
       contentContainerStyle={{
         padding: 16,
         gap: 24,
@@ -70,6 +69,7 @@ export default function Page() {
           <View style={{ flex: 1 }} />
           <Text style={FormFont.secondary}>1.2.7</Text>
         </HStack>
+
         <Text hint="iOS 18.3">System</Text>
       </FormList>
 
@@ -94,25 +94,19 @@ export default function Page() {
           </Text>
         }
       >
-        {/* <FormItem>
-        <View style={{ gap: 4 }}>
-          <Text style={{ color: AC.label, fontSize: 18, fontWeight: "600" }}>
-            Results
-          </Text>
-          <Text style={{ color: AC.secondaryLabel, fontSize: 16 }}>
-            {"No results yet"}
-          </Text>
-        </View>
-      </FormItem> */}
         <Text>Default</Text>
+        <Text hint="Right">Hint</Text>
         <Text
           onPress={() => {
             console.log("Hey");
           }}
         >
-          Press
+          Pressable
         </Text>
-        <Text style={{ fontWeight: "bold", color: "blue" }}>Custom style</Text>
+
+        <Text style={{ fontWeight: "bold", color: AC.systemPink }}>
+          Custom style
+        </Text>
 
         <View>
           <Text>Wrapped</Text>
