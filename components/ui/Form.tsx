@@ -1,5 +1,4 @@
 import {
-  PixelRatio,
   Text as RNText,
   TextProps,
   TextStyle,

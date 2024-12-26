@@ -1,13 +1,10 @@
 import { BodyScrollView } from "@/components/ui/BodyScrollView";
-import { Image, OpaqueColorValue, Text, StyleSheet, View } from "react-native";
-
-import * as AC from "@bacons/apple-colors";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { ComponentProps, useState } from "react";
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import * as Form from "@/components/ui/Form";
-
+import { IconSymbol } from "@/components/ui/IconSymbol";
+import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
+import { ComponentProps } from "react";
+import { Image, OpaqueColorValue, Text, View } from "react-native";
 
 export default function Page() {
   return (
