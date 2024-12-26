@@ -40,31 +40,31 @@ export default function Page() {
           </Form.Text>
           <Text style={{ textAlign: "center", fontSize: 14 }}>
             Web development tool for iOS and iPadOS.{" "}
-            <Link
+            <Form.Link
               style={{
                 color: AC.link,
               }}
               href="/two"
             >
               Learn more...
-            </Link>
+            </Form.Link>
           </Text>
         </View>
       </FormList>
 
       <FormList>
-        <Link
+        <Form.Link
           style={{
             color: AC.link,
           }}
           href="/two"
         >
           Setup Instructions
-        </Link>
+        </Form.Link>
       </FormList>
 
       <FormList>
-        <Link
+        <Form.Link
           style={{
             color: AC.link,
           }}
@@ -78,7 +78,7 @@ export default function Page() {
           >
             Select multiple
           </FormLabel>
-        </Link>
+        </Form.Link>
       </FormList>
 
       <FormList>
@@ -100,7 +100,11 @@ export default function Page() {
 
           <View style={{ flex: 1 }} />
 
-          <IconSymbol name="person.fill.badge.plus" size={24} />
+          <IconSymbol
+            color={AC.systemBlue}
+            name="person.fill.badge.plus"
+            size={24}
+          />
         </HStack>
       </FormList>
 
@@ -186,9 +190,9 @@ export default function Page() {
           </FormLabel>
         </Link>
 
-        <Link href="/two" hint={"Normal"}>
+        <Form.Link href="/two" hint="Normal">
           Pick a value
-        </Link>
+        </Form.Link>
       </FormList>
 
       <FormList>

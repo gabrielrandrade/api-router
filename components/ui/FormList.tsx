@@ -12,7 +12,7 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 
 import * as AppleColors from "@bacons/apple-colors";
 import { FormItem, HStack } from "./Form";
-import { Link } from "expo-router";
+import { LinkProps, Link as RouterLink } from "expo-router";
 const Colors = {
   systemGray4: AppleColors.systemGray4, // "rgba(209, 209, 214, 1)",
   secondarySystemGroupedBackground:
@@ -21,9 +21,32 @@ const Colors = {
 };
 
 /** Text but with iOS default color and sizes. */
-export const Text = React.forwardRef<RNText, TextProps>((props, ref) => {
+export const Text = React.forwardRef<
+  RNText,
+  TextProps & {
+    /** Value displayed on the right side of the form item. */
+    hint?: React.ReactNode;
+  }
+>((props, ref) => {
   return (
     <RNText
+      dynamicTypeRamp="body"
+      {...props}
+      ref={ref}
+      style={mergedStyles(FormFont.default, props)}
+    />
+  );
+});
+
+export const Link = React.forwardRef<
+  typeof RouterLink,
+  LinkProps & {
+    /** Value displayed on the right side of the form item. */
+    hint?: React.ReactNode;
+  }
+>((props, ref) => {
+  return (
+    <RouterLink
       dynamicTypeRamp="body"
       {...props}
       ref={ref}
@@ -108,7 +131,7 @@ export function FormList({
             </HStack>
           );
         }
-      } else if (child.type === Link) {
+      } else if (child.type === RouterLink || child.type === Link) {
         wrapsFormItem = true;
 
         const wrappedTextChildren = React.Children.map(
