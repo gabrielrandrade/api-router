@@ -58,6 +58,7 @@ export function FormList({
       // If child is type of Text, add default props
       if (child.type === Text) {
         child = React.cloneElement(child, {
+          dynamicTypeRamp: "body",
           onPress: undefined,
           style: [FormFont.default, child.props.style],
           numberOfLines: 1,
@@ -75,7 +76,11 @@ export function FormList({
               return null;
             }
             if (typeof child === "string") {
-              return <Text style={FormFont.secondary}>{child}</Text>;
+              return (
+                <Text dynamicTypeRamp="body" style={FormFont.secondary}>
+                  {child}
+                </Text>
+              );
             }
             return child;
           });
@@ -102,7 +107,10 @@ export function FormList({
             }
             if (typeof linkChild === "string") {
               return (
-                <Text style={mergedStyles(FormFont.default, child.props)}>
+                <Text
+                  dynamicTypeRamp="body"
+                  style={mergedStyles(FormFont.default, child.props)}
+                >
                   {linkChild}
                 </Text>
               );
@@ -122,7 +130,11 @@ export function FormList({
               return null;
             }
             if (typeof child === "string") {
-              return <Text style={FormFont.secondary}>{child}</Text>;
+              return (
+                <Text dynamicTypeRamp="body" style={FormFont.secondary}>
+                  {child}
+                </Text>
+              );
             }
             return child;
           });
@@ -130,6 +142,7 @@ export function FormList({
 
         child = React.cloneElement(child, {
           style: [FormFont.default, child.props.style],
+          dynamicTypeRamp: "body",
           numberOfLines: 1,
           adjustsFontSizeToFit: true,
           asChild: true,
@@ -201,6 +214,7 @@ export function FormList({
     <View>
       {title && (
         <Text
+          dynamicTypeRamp="footnote"
           style={{
             textTransform: "uppercase",
             color: AppleColors.secondaryLabel,
@@ -217,6 +231,7 @@ export function FormList({
       {contents}
       {footer && (
         <Text
+          dynamicTypeRamp="footnote"
           style={{
             color: AppleColors.secondaryLabel,
             paddingHorizontal: 20,
