@@ -1,4 +1,11 @@
-import { PixelRatio, Text, View, ViewProps } from "react-native";
+import {
+  PixelRatio,
+  Text,
+  TextStyle,
+  View,
+  ViewProps,
+  ViewStyle,
+} from "react-native";
 import React from "react";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 
@@ -61,15 +68,19 @@ export function FormList({
 
         const wrappedTextChildren = React.Children.map(
           child.props.children,
-          (child) => {
+          (linkChild) => {
             // Filter out empty children
-            if (!child) {
+            if (!linkChild) {
               return null;
             }
-            if (typeof child === "string") {
-              return <Text style={FormFont.default}>{child}</Text>;
+            if (typeof linkChild === "string") {
+              return (
+                <Text style={mergedStyles(FormFont.default, child.props)}>
+                  {linkChild}
+                </Text>
+              );
             }
-            return child;
+            return linkChild;
           }
         );
 
@@ -234,4 +245,14 @@ function Separator() {
       }}
     />
   );
+}
+
+function mergedStyles(style: ViewStyle | TextStyle, props: any) {
+  if (props.style == null) {
+    return style;
+  } else if (Array.isArray(props.style)) {
+    return [style, ...props.style];
+  } else {
+    return [style, props.style];
+  }
 }

@@ -20,6 +20,17 @@ export default function Page() {
         gap: 24,
       }}
     >
+      <FormList>
+        <Link
+          style={{
+            color: AC.link,
+          }}
+          href="/two"
+        >
+          Setup Instructions
+        </Link>
+      </FormList>
+
       <FormList
         title="Vision"
         footer={
