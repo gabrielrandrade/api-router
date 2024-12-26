@@ -6,7 +6,6 @@ export default function Layout() {
     <ThemeProvider>
       <Stack
         screenOptions={{
-          headerLargeTitle: true,
           title: "🥓 Bacon",
         }}
       />
