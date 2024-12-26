@@ -9,10 +9,12 @@ import Skeleton from "@/components/ui/Skeleton";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { FormFont, FormList } from "@/components/ui/FormList";
 import { FormItem, HStack } from "@/components/ui/Form";
+import { Link } from "expo-router";
 
 export default function Page() {
   return (
     <BodyScrollView
+      style={{ backgroundColor: AC.secondarySystemBackground }}
       contentContainerStyle={{
         padding: 16,
         gap: 16,
@@ -70,6 +72,15 @@ export default function Page() {
           </Text>
         </View>
       </FormItem> */}
+      </FormList>
+      <FormList>
+        {/* Table style: | A   B |*/}
+        <Link href="/two">Two</Link>
+        <Link href="/two">
+          <FormLabel systemImage="photo.on.rectangle">
+            Select multiple
+          </FormLabel>
+        </Link>
       </FormList>
       <FormList>
         {/* Table style: | A   B |*/}

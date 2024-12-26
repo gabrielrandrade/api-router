@@ -67,11 +67,12 @@ export function HStack(props: ViewProps) {
 
 const minItemHeight = 20;
 
-export function FormItem({
-  children,
-  href,
-  onPress,
-}: Pick<ViewProps, "children"> & { href?: Href<any>; onPress?: () => void }) {
+import { forwardRef } from "react";
+
+export const FormItem = forwardRef<
+  typeof TouchableHighlight,
+  Pick<ViewProps, "children"> & { href?: Href<any>; onPress?: () => void }
+>(function FormItem({ children, href, onPress }, ref) {
   if (href == null) {
     if (onPress == null) {
       return (
@@ -82,6 +83,7 @@ export function FormItem({
     }
     return (
       <TouchableHighlight
+        ref={ref}
         underlayColor={AppleColors.systemGray4}
         onPress={onPress}
       >
@@ -94,11 +96,11 @@ export function FormItem({
 
   return (
     <Link asChild href={href} onPress={onPress}>
-      <TouchableHighlight underlayColor={AppleColors.systemGray4}>
+      <TouchableHighlight ref={ref} underlayColor={AppleColors.systemGray4}>
         <EnsurePadding>
           <HStack style={{ minHeight: minItemHeight }}>{children}</HStack>
         </EnsurePadding>
       </TouchableHighlight>
     </Link>
   );
-}
+});
