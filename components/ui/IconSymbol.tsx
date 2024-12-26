@@ -15,6 +15,9 @@ const MAPPING = {
   "chevron.right": "chevron-right",
   "arrow.up.right": "arrow-forward",
   magnifyingglass: "search",
+  "photo.on.rectangle": "photo-library",
+  star: "star-border",
+  "star.fill": "star",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

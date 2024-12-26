@@ -1,16 +1,17 @@
+import { IconSymbol } from "@/components/ui/IconSymbol";
+import * as AppleColors from "@bacons/apple-colors";
+import { Href, Link as RouterLink, LinkProps } from "expo-router";
+import React from "react";
+import { forwardRef } from "react";
 import {
   Text as RNText,
   TextProps,
   TextStyle,
+  TouchableHighlight,
   View,
   ViewProps,
   ViewStyle,
-  TouchableHighlight,
 } from "react-native";
-import React from "react";
-import { IconSymbol } from "@/components/ui/IconSymbol";
-
-import { Href } from "expo-router";
 
 const ListItemPaddingContext = React.createContext<
   | [
@@ -65,8 +66,6 @@ export function HStack(props: ViewProps) {
 
 const minItemHeight = 20;
 
-import { forwardRef } from "react";
-
 export const FormItem = forwardRef<
   typeof TouchableHighlight,
   Pick<ViewProps, "children"> & { href?: Href<any>; onPress?: () => void }
@@ -103,8 +102,6 @@ export const FormItem = forwardRef<
   );
 });
 
-import * as AppleColors from "@bacons/apple-colors";
-import { LinkProps, Link as RouterLink } from "expo-router";
 const Colors = {
   systemGray4: AppleColors.systemGray4, // "rgba(209, 209, 214, 1)",
   secondarySystemGroupedBackground:
