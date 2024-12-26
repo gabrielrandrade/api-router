@@ -7,7 +7,7 @@ import { ComponentProps, useState } from "react";
 import TouchableBounce from "@/components/ui/TouchableBounce.native";
 import Skeleton from "@/components/ui/Skeleton";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import { FormList } from "@/components/ui/FormList";
+import { FormFont, FormList } from "@/components/ui/FormList";
 import { FormItem, HStack } from "@/components/ui/Form";
 
 export default function Page() {
@@ -52,6 +52,13 @@ export default function Page() {
           Select multiple
         </FormLabel>
 
+        {/* Table style: | A   B |*/}
+        <HStack>
+          <Text style={FormFont.default}>Foo</Text>
+          <View style={{ flex: 1 }} />
+          <Text style={FormFont.secondary}>Bar</Text>
+        </HStack>
+
         {/* <Foo>Hey</Foo> */}
         {/* <FormItem>
         <View style={{ gap: 4 }}>
@@ -63,6 +70,19 @@ export default function Page() {
           </Text>
         </View>
       </FormItem> */}
+      </FormList>
+      <FormList>
+        {/* Table style: | A   B |*/}
+        <HStack>
+          <Text style={FormFont.default}>SDK 52</Text>
+          <View style={{ flex: 1 }} />
+          <Text style={FormFont.secondary}>Expo Router v4</Text>
+        </HStack>
+        <HStack>
+          <Text style={FormFont.default}>SDK 51</Text>
+          <View style={{ flex: 1 }} />
+          <Text style={FormFont.secondary}>Expo Router v3</Text>
+        </HStack>
       </FormList>
     </BodyScrollView>
   );

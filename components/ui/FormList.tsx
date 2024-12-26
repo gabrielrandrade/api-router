@@ -11,6 +11,14 @@ const Colors = {
 };
 
 export const FormFont = {
+  default: {
+    color: AppleColors.label,
+    fontSize: 17,
+  },
+  secondary: {
+    color: AppleColors.secondaryLabel,
+    fontSize: 17,
+  },
   title: {
     color: AppleColors.label,
     fontSize: 17,
