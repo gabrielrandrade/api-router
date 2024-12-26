@@ -1,5 +1,5 @@
 import { BodyScrollView } from "@/components/ui/BodyScrollView";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 import * as AC from "@bacons/apple-colors";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -7,7 +7,8 @@ import { ComponentProps, useState } from "react";
 import TouchableBounce from "@/components/ui/TouchableBounce.native";
 import Skeleton from "@/components/ui/Skeleton";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import { FormFont, FormList } from "@/components/ui/FormList";
+import { FormFont, FormList, Text } from "@/components/ui/FormList";
+import * as Form from "@/components/ui/FormList";
 import { FormItem, HStack } from "@/components/ui/Form";
 import { Link } from "expo-router";
 
@@ -29,16 +30,15 @@ export default function Page() {
               borderRadius: 8,
             }}
           />
-          <Text
+          <Form.Text
             style={{
-              color: AC.label,
               fontSize: 20,
               fontWeight: "600",
             }}
           >
             Web Inspector
-          </Text>
-          <Text style={{ textAlign: "center" }}>
+          </Form.Text>
+          <Text style={{ textAlign: "center", fontSize: 14 }}>
             Web development tool for iOS and iPadOS.{" "}
             <Link
               style={{
@@ -70,7 +70,7 @@ export default function Page() {
           <Text style={FormFont.secondary}>1.2.7</Text>
         </HStack>
 
-        <Text hint="iOS 18.3">System</Text>
+        <Form.Text hint="iOS 18.3">System</Form.Text>
       </FormList>
 
       <FormList>

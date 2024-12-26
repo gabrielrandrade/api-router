@@ -1,6 +1,7 @@
 import {
   PixelRatio,
-  Text,
+  Text as RNText,
+  TextProps,
   TextStyle,
   View,
   ViewProps,
@@ -18,6 +19,18 @@ const Colors = {
     AppleColors.secondarySystemGroupedBackground, // "rgba(255, 255, 255, 1)",
   separator: AppleColors.separator, // "rgba(61.2, 61.2, 66, 0.29)",
 };
+
+/** Text but with iOS default color and sizes. */
+export const Text = React.forwardRef<RNText, TextProps>((props, ref) => {
+  return (
+    <RNText
+      dynamicTypeRamp="body"
+      {...props}
+      ref={ref}
+      style={mergedStyles(FormFont.default, props)}
+    />
+  );
+});
 
 export const FormFont = {
   // From inspecting SwiftUI `List { Text("Foo") }` in Xcode.
@@ -56,7 +69,7 @@ export function FormList({
       const originalOnPress = child.props.onPress;
       let wrapsFormItem = false;
       // If child is type of Text, add default props
-      if (child.type === Text) {
+      if (child.type === RNText || child.type === Text) {
         child = React.cloneElement(child, {
           dynamicTypeRamp: "body",
           onPress: undefined,
@@ -77,9 +90,9 @@ export function FormList({
             }
             if (typeof child === "string") {
               return (
-                <Text dynamicTypeRamp="body" style={FormFont.secondary}>
+                <RNText dynamicTypeRamp="body" style={FormFont.secondary}>
                   {child}
-                </Text>
+                </RNText>
               );
             }
             return child;
@@ -107,12 +120,12 @@ export function FormList({
             }
             if (typeof linkChild === "string") {
               return (
-                <Text
+                <RNText
                   dynamicTypeRamp="body"
                   style={mergedStyles(FormFont.default, child.props)}
                 >
                   {linkChild}
-                </Text>
+                </RNText>
               );
             }
             return linkChild;
@@ -130,11 +143,7 @@ export function FormList({
               return null;
             }
             if (typeof child === "string") {
-              return (
-                <Text dynamicTypeRamp="body" style={FormFont.secondary}>
-                  {child}
-                </Text>
-              );
+              return <Text style={FormFont.secondary}>{child}</Text>;
             }
             return child;
           });
@@ -213,7 +222,7 @@ export function FormList({
   return (
     <View>
       {title && (
-        <Text
+        <RNText
           dynamicTypeRamp="footnote"
           style={{
             textTransform: "uppercase",
@@ -226,11 +235,11 @@ export function FormList({
           }}
         >
           {title}
-        </Text>
+        </RNText>
       )}
       {contents}
       {footer && (
-        <Text
+        <RNText
           dynamicTypeRamp="footnote"
           style={{
             color: AppleColors.secondaryLabel,
@@ -240,7 +249,7 @@ export function FormList({
           }}
         >
           {footer}
-        </Text>
+        </RNText>
       )}
     </View>
   );
