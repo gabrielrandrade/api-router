@@ -1,5 +1,9 @@
 # Common components for Expo apps
 
+<img src="https://github.com/user-attachments/assets/00903906-c8bf-42d2-81b7-337ba76ea890" width="128px">
+
+<img src="https://github.com/user-attachments/assets/b550f9c1-2e01-4ec3-8050-450c33bfcce7" width="128px">
+
 ## Stack
 
 Use the correct stack header settings for peak iOS defaults:
