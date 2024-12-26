@@ -78,7 +78,7 @@ export const FormFont = {
   },
 };
 
-export function FormList({
+export function Section({
   children,
   title,
   footer,

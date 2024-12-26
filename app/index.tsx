@@ -7,7 +7,7 @@ import { ComponentProps, useState } from "react";
 import TouchableBounce from "@/components/ui/TouchableBounce.native";
 import Skeleton from "@/components/ui/Skeleton";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import { FormFont, FormList } from "@/components/ui/FormList";
+import { FormFont, Section } from "@/components/ui/FormList";
 import * as Form from "@/components/ui/FormList";
 import { FormItem, HStack } from "@/components/ui/Form";
 import { Link } from "expo-router";
@@ -20,7 +20,7 @@ export default function Page() {
         gap: 24,
       }}
     >
-      <FormList>
+      <Form.Section>
         <View style={{ alignItems: "center", gap: 8, padding: 16 }}>
           <Image
             source={{ uri: "https://github.com/evanbacon.png" }}
@@ -50,9 +50,9 @@ export default function Page() {
             </Form.Link>
           </Text>
         </View>
-      </FormList>
+      </Form.Section>
 
-      <FormList>
+      <Form.Section>
         <Form.Link
           style={{
             color: AC.link,
@@ -61,9 +61,9 @@ export default function Page() {
         >
           Setup Instructions
         </Form.Link>
-      </FormList>
+      </Form.Section>
 
-      <FormList>
+      <Form.Section>
         <Form.Link
           style={{
             color: AC.link,
@@ -79,9 +79,9 @@ export default function Page() {
             Select multiple
           </FormLabel>
         </Form.Link>
-      </FormList>
+      </Form.Section>
 
-      <FormList>
+      <Form.Section>
         <HStack style={{ gap: 16 }}>
           <Image
             source={{ uri: "https://github.com/evanbacon.png" }}
@@ -106,9 +106,9 @@ export default function Page() {
             size={24}
           />
         </HStack>
-      </FormList>
+      </Form.Section>
 
-      <FormList>
+      <Form.Section>
         <HStack>
           <Text style={FormFont.default}>Version</Text>
           <View style={{ flex: 1 }} />
@@ -116,16 +116,17 @@ export default function Page() {
         </HStack>
 
         <Form.Text hint="iOS 18.3">System</Form.Text>
-      </FormList>
+      </Form.Section>
 
-      <FormList>
-        <Link href="https://evanbacon.dev">Evan Bacon</Link>
-      </FormList>
-      <FormList>
+      <Form.Section title="Developer">
+        <Form.Link href="https://evanbacon.dev">Evan Bacon</Form.Link>
+      </Form.Section>
+
+      <Form.Section>
         <Link href="/credit">Acknowledgements</Link>
-      </FormList>
+      </Form.Section>
 
-      <FormList
+      <Form.Section
         title="Vision"
         footer={
           <Text>
@@ -172,8 +173,8 @@ export default function Page() {
           <View style={{ flex: 1 }} />
           <Text style={FormFont.secondary}>Bar</Text>
         </HStack>
-      </FormList>
-      <FormList title="Links">
+      </Form.Section>
+      <Form.Section title="Links">
         {/* Table style: | A   B |*/}
         <Link href="/two">Next</Link>
         <Link href="/two">
@@ -193,9 +194,9 @@ export default function Page() {
         <Form.Link href="/two" hint="Normal">
           Pick a value
         </Form.Link>
-      </FormList>
+      </Form.Section>
 
-      <FormList>
+      <Form.Section>
         {/* Table style: | A   B |*/}
         <HStack>
           <Text style={FormFont.default}>SDK 52</Text>
@@ -207,7 +208,7 @@ export default function Page() {
           <View style={{ flex: 1 }} />
           <Text style={FormFont.secondary}>Expo Router v3</Text>
         </HStack>
-      </FormList>
+      </Form.Section>
     </BodyScrollView>
   );
 }
@@ -217,7 +218,7 @@ function FormLabel({
   systemImage,
   color,
 }: {
-  /** Only used when `<FormLabel />` is a direct child of `<FormList />`. */
+  /** Only used when `<FormLabel />` is a direct child of `<Section />`. */
   onPress?: () => void;
   children: React.ReactNode;
   systemImage: ComponentProps<typeof IconSymbol>["name"];
