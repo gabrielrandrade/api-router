@@ -13,6 +13,7 @@ const MAPPING = {
   "paperplane.fill": "send",
   "chevron.left.forwardslash.chevron.right": "code",
   "chevron.right": "chevron-right",
+  "arrow.up.right": "arrow-forward",
   magnifyingglass: "search",
 } as Partial<
   Record<

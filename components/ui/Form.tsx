@@ -53,6 +53,7 @@ export function HStack(props: ViewProps) {
       {...props}
       style={mergedStyles(
         {
+          flex: 1,
           flexDirection: "row",
           alignItems: "center",
         },
@@ -373,11 +374,12 @@ function LinkChevronIcon({ href }: { href?: any }) {
   const isHrefExternal =
     typeof href === "string" && /^([\w\d_+.-]+:)?\/\//.test(href);
 
+  const size = process.env.EXPO_OS === "ios" ? 14 : 24;
   if (isHrefExternal) {
     return (
       <IconSymbol
         name="arrow.up.right"
-        size={14}
+        size={size}
         weight="bold"
         // from xcode, not sure which color is the exact match
         // #BFBFBF
@@ -389,7 +391,7 @@ function LinkChevronIcon({ href }: { href?: any }) {
   return (
     <IconSymbol
       name="chevron.right"
-      size={14}
+      size={size}
       weight="bold"
       // from xcode, not sure which color is the exact match
       // #BFBFBF

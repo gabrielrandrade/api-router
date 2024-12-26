@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as AC from "@bacons/apple-colors";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useState } from "react";
-import TouchableBounce from "@/components/ui/TouchableBounce.native";
+import TouchableBounce from "@/components/ui/TouchableBounce";
 import Skeleton from "@/components/ui/Skeleton";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 export default function Page() {
