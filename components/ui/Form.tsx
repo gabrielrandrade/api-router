@@ -1,6 +1,7 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import * as AppleColors from "@bacons/apple-colors";
 import { Href, Link as RouterLink, LinkProps } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import { forwardRef } from "react";
 import {
@@ -140,6 +141,27 @@ export const Link = React.forwardRef<
       {...props}
       ref={ref}
       style={mergedStyles(FormFont.default, props)}
+      onPress={
+        process.env.EXPO_OS === "web"
+          ? props.onPress
+          : (e) => {
+              if (
+                props.target === "_blank" &&
+                // Ensure the resolved href is an external URL.
+                /^([\w\d_+.-]+:)?\/\//.test(RouterLink.resolveHref(props.href))
+              ) {
+                // Prevent the default behavior of linking to the default browser on native.
+                e.preventDefault();
+                // Open the link in an in-app browser.
+                WebBrowser.openBrowserAsync(props.href as string, {
+                  presentationStyle:
+                    WebBrowser.WebBrowserPresentationStyle.AUTOMATIC,
+                });
+              } else {
+                props.onPress?.(e);
+              }
+            }
+      }
     />
   );
 });
@@ -279,25 +301,6 @@ export function Section({
               </HStack>
             </FormItem>
           ),
-          // children: isTextOnly ? (
-          //   <FormItem>
-          //     <HStack>
-          //       {wrappedTextChildren}
-          //       <View style={{ flex: 1 }} />
-          //       <IconSymbol
-          //         name="chevron.right"
-          //         size={14}
-          //         weight="bold"
-          //         // from xcode, not sure which color is the exact match
-          //         // #BFBFBF
-          //         // #9D9DA0
-          //         color={AppleColors.tertiaryLabel}
-          //       />
-          //     </HStack>
-          //   </FormItem>
-          // ) : (
-          //   <FormItem>{wrappedTextChildren}</FormItem>
-          // ),
         });
       }
       // Ensure child is a FormItem otherwise wrap it in a FormItem

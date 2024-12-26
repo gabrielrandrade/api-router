@@ -1,50 +1,166 @@
-# Welcome to your Expo app 👋
+# Common components for Expo apps
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Stack
 
-## Get started
+Use the correct stack header settings for peak iOS defaults:
 
-1. Install dependencies
+```tsx
+import Stack from "@/components/ui/Stack";
+import ThemeProvider from "@/components/ui/ThemeProvider";
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+export default function Layout() {
+  return (
+    <ThemeProvider>
+      <Stack
+        screenOptions={{
+          title: "🥓 Bacon",
+        }}
+      />
+    </ThemeProvider>
+  );
+}
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Forms
 
-## Learn more
+```tsx
+<BodyScrollView
+  contentContainerStyle={{
+    padding: 16,
+    gap: 24,
+  }}
+>
+  <Form.Section title="Developer">
+    <Form.Link target="_blank" href="https://evanbacon.dev">
+      Evan Bacon
+    </Form.Link>
+    <Form.Link href="https://evanbacon.dev">Evan Bacon in browser</Form.Link>
+  </Form.Section>
+</BodyScrollView>
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Form Sections
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+All top-level children will become items.
 
-## Join the community
+Add `title` and `footer` to a section. These can be strings or React nodes.
 
-Join our community of developers creating universal apps.
+```tsx
+import * as AC from "@bacons/apple-colors";
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+<Form.Section
+  title="Header"
+  footer={
+    <Text>
+      Help improve Search by allowing Apple to store the searches you enter into
+      Safari, Siri, and Spotlight in a way that is not linked to you.{"\n\n"}
+      Searches include lookups of general knowledge, and requests to do things like
+      play music and get directions.{"\n"}
+      <Link style={{ color: AC.link }} href="/two">
+        About Search & Privacy...
+      </Link>
+    </Text>
+  }
+>
+  <Text>Default</Text>
+</Form.Section>;
+```
+
+## Form Items
+
+- `Form.Text` has extra types for `hint` and custom styles to have adaptive colors for dark mode. The font size is also larger to match the Apple defaults.
+
+```tsx
+<Form.Text>Hey</Form.Text>
+```
+
+Add a hint to the right-side of the form item:
+
+```tsx
+<Form.Text hint="right">Left</Form.Text>
+```
+
+Add a custom press handler to the form item:
+
+```tsx
+<Form.Text
+  onPress={() => {
+    console.log("Pressed");
+  }}
+>
+  Press me
+</Form.Text>
+```
+
+## Form Link
+
+Open with in-app browser using `target="_blank"` (only works when the `href` is an external URL):
+
+```tsx
+<Form.Link target="_blank" href="https://evanbacon.dev">
+  Evan Bacon
+</Form.Link>
+```
+
+Add a hint to the right-side of the form item:
+
+```tsx
+<Form.Link hint="123" href="/foo">
+  Evan Bacon
+</Form.Link>
+```
+
+Alternatively, use an HStack-type system instead of the `hint` hack:
+
+```tsx
+<Form.HStack>
+  <Form.Text>Foo</Form.Text>
+  <View style={{ flex: 1 }} />
+  <Form.Text style={Form.FormFont.secondary}>Bar</Form.Text>
+</Form.HStack>
+```
+
+## Form Description and Item
+
+Add a list item with an image and text + description combo:
+
+```tsx
+<Form.HStack style={{ gap: 16 }}>
+  <Image
+    source={{ uri: "https://github.com/evanbacon.png" }}
+    style={{
+      aspectRatio: 1,
+      height: 48,
+      borderRadius: 999,
+    }}
+  />
+  <View style={{ gap: 4 }}>
+    <Form.Text>Evan's iPhone</Form.Text>
+    <Form.Text style={Form.FormFont.caption}>This iPhone 16 Pro Max</Form.Text>
+  </View>
+
+  {/* Spacer */}
+  <View style={{ flex: 1 }} />
+
+  <IconSymbol color={AC.systemBlue} name="person.fill.badge.plus" size={24} />
+</Form.HStack>
+```
+
+Create a linkable version like this:
+
+```tsx
+<Form.Link href="/two">
+  <View style={{ gap: 4 }}>
+    <Form.Text>Evan's iPhone</Form.Text>
+    <Form.Text style={Form.FormFont.caption}>This iPhone 16 Pro Max</Form.Text>
+  </View>
+</Form.Link>
+```
+
+## Colors
+
+Be sure to use `@bacons/apple-colors` for high-quality P3 colors.
+
+## Icons
+
+Use the `IconSymbol` component to use Apple's SF Symbols.

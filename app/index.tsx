@@ -113,7 +113,12 @@ export default function Page() {
       </Form.Section>
 
       <Form.Section title="Developer">
-        <Form.Link href="https://evanbacon.dev">Evan Bacon</Form.Link>
+        <Form.Link target="_blank" href="https://evanbacon.dev">
+          Evan Bacon
+        </Form.Link>
+        <Form.Link href="https://evanbacon.dev">
+          Evan Bacon in browser
+        </Form.Link>
       </Form.Section>
 
       <Form.Section>
@@ -135,7 +140,7 @@ export default function Page() {
         }
       >
         <Text>Default</Text>
-        <Text hint="Right">Hint</Text>
+        <Form.Text hint="Right">Hint</Form.Text>
         <Text
           onPress={() => {
             console.log("Hey");
