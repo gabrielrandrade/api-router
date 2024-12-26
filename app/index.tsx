@@ -17,10 +17,23 @@ export default function Page() {
       style={{ backgroundColor: AC.secondarySystemBackground }}
       contentContainerStyle={{
         padding: 16,
-        gap: 16,
+        gap: 24,
       }}
     >
-      <FormList>
+      <FormList
+        title="Vision"
+        footer={
+          <Text>
+            Help improve Search by allowing Apple to store the searches you
+            enter into Safari, Siri, and Spotlight in a way that is not linked
+            to you.{"\n\n"}Searches include lookups of general knowledge, and
+            requests to do things like play music and get directions.{"\n"}
+            <Link style={{ color: AC.link }} href="/two">
+              About Search & Privacy...
+            </Link>
+          </Text>
+        }
+      >
         {/* <FormItem>
         <View style={{ gap: 4 }}>
           <Text style={{ color: AC.label, fontSize: 18, fontWeight: "600" }}>
@@ -60,22 +73,16 @@ export default function Page() {
           <View style={{ flex: 1 }} />
           <Text style={FormFont.secondary}>Bar</Text>
         </HStack>
-
-        {/* <Foo>Hey</Foo> */}
-        {/* <FormItem>
-        <View style={{ gap: 4 }}>
-          <Text style={{ color: AC.label, fontSize: 18, fontWeight: "600" }}>
-            Results
-          </Text>
-          <Text style={{ color: AC.secondaryLabel, fontSize: 16 }}>
-            {"No results yet"}
-          </Text>
-        </View>
-      </FormItem> */}
       </FormList>
       <FormList>
         {/* Table style: | A   B |*/}
         <Link href="/two">Two</Link>
+        <Link href="/two">
+          <View style={{ gap: 4 }}>
+            <Text style={FormFont.default}>Evan's iPhone</Text>
+            <Text style={FormFont.caption}>This iPhone 16 Pro Max</Text>
+          </View>
+        </Link>
         <Link href="https://expo.dev">Expo</Link>
 
         <Link href="/two">
@@ -113,14 +120,7 @@ function FormLabel({
   return (
     <HStack style={{ gap: 16 }}>
       <IconSymbol name={systemImage} size={28} color={AC.systemBlue} />
-      <Text
-        style={{
-          color: AC.label,
-          fontSize: 17,
-        }}
-      >
-        {children}
-      </Text>
+      <Text style={FormFont.default}>{children}</Text>
     </HStack>
   );
 }
@@ -130,7 +130,3 @@ function FormLabel({
 // ol
 // ul
 // table -> two columns
-
-function Foo(props) {
-  return <Text {...props} />;
-}

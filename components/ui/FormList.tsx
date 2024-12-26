@@ -24,6 +24,10 @@ export const FormFont = {
     color: AppleColors.secondaryLabel,
     fontSize: 17,
   },
+  caption: {
+    color: AppleColors.secondaryLabel,
+    fontSize: 12,
+  },
   title: {
     color: AppleColors.label,
     fontSize: 17,
@@ -31,7 +35,12 @@ export const FormFont = {
   },
 };
 
-export function FormList({ children, ...props }: ViewProps) {
+export function FormList({
+  children,
+  title,
+  footer,
+  ...props
+}: ViewProps & { title?: string; footer?: string | React.ReactNode }) {
   const childrenWithSeparator = React.Children.map(children, (child, index) => {
     if (React.isValidElement(child)) {
       const isLastChild = index === React.Children.count(children) - 1;
@@ -116,7 +125,7 @@ export function FormList({ children, ...props }: ViewProps) {
     return child;
   });
 
-  return (
+  const contents = (
     <View
       {...props}
       style={[
@@ -130,6 +139,39 @@ export function FormList({ children, ...props }: ViewProps) {
       ]}
       children={childrenWithSeparator}
     />
+  );
+
+  return (
+    <View>
+      {title && (
+        <Text
+          style={{
+            textTransform: "uppercase",
+            color: AppleColors.secondaryLabel,
+            paddingHorizontal: 20,
+            paddingVertical: 8,
+            fontSize: 14,
+            // use Apple condensed font
+            // fontVariant: ["small-caps"],
+          }}
+        >
+          {title}
+        </Text>
+      )}
+      {contents}
+      {footer && (
+        <Text
+          style={{
+            color: AppleColors.secondaryLabel,
+            paddingHorizontal: 20,
+            paddingVertical: 8,
+            fontSize: 14,
+          }}
+        >
+          {footer}
+        </Text>
+      )}
+    </View>
   );
 }
 
