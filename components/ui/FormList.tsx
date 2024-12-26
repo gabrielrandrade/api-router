@@ -63,6 +63,33 @@ export function FormList({
           numberOfLines: 1,
           adjustsFontSizeToFit: true,
         });
+
+        const hintView = (() => {
+          if (!child.props.hint) {
+            return null;
+          }
+
+          return React.Children.map(child.props.hint, (child) => {
+            // Filter out empty children
+            if (!child) {
+              return null;
+            }
+            if (typeof child === "string") {
+              return <Text style={FormFont.secondary}>{child}</Text>;
+            }
+            return child;
+          });
+        })();
+
+        if (hintView) {
+          child = (
+            <HStack>
+              {child}
+              <View style={{ flex: 1 }} />
+              {hintView}
+            </HStack>
+          );
+        }
       } else if (child.type === Link) {
         wrapsFormItem = true;
 

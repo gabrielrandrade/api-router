@@ -1,5 +1,5 @@
 import { BodyScrollView } from "@/components/ui/BodyScrollView";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 import * as AC from "@bacons/apple-colors";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -21,6 +21,39 @@ export default function Page() {
       }}
     >
       <FormList>
+        <View style={{ alignItems: "center", gap: 8, padding: 16 }}>
+          <Image
+            source={{ uri: "https://github.com/evanbacon.png" }}
+            style={{
+              aspectRatio: 1,
+              height: 64,
+              borderRadius: 8,
+            }}
+          />
+          <Text
+            style={{
+              color: AC.label,
+              fontSize: 20,
+              fontWeight: "600",
+            }}
+          >
+            Web Inspector
+          </Text>
+          <Text style={{ textAlign: "center" }}>
+            Web development tool for iOS and iPadOS.{" "}
+            <Link
+              style={{
+                color: AC.link,
+              }}
+              href="/two"
+            >
+              Learn more...
+            </Link>
+          </Text>
+        </View>
+      </FormList>
+
+      <FormList>
         <Link
           style={{
             color: AC.link,
@@ -29,6 +62,22 @@ export default function Page() {
         >
           Setup Instructions
         </Link>
+      </FormList>
+
+      <FormList>
+        <HStack>
+          <Text style={FormFont.default}>Version</Text>
+          <View style={{ flex: 1 }} />
+          <Text style={FormFont.secondary}>1.2.7</Text>
+        </HStack>
+        <Text hint="iOS 18.3">System</Text>
+      </FormList>
+
+      <FormList>
+        <Link href="https://evanbacon.dev">Evan Bacon</Link>
+      </FormList>
+      <FormList>
+        <Link href="/credit">Acknowledgements</Link>
       </FormList>
 
       <FormList
