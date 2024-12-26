@@ -47,40 +47,6 @@ export default function Page() {
       </Form.Section>
 
       <Form.Section>
-        <Form.Link
-          style={{
-            color: AC.link,
-          }}
-          href="/two"
-        >
-          Setup Instructions
-        </Form.Link>
-      </Form.Section>
-
-      <Form.Section>
-        <Form.Link
-          style={{
-            color: AC.link,
-          }}
-          href="/two"
-        >
-          <FormLabel systemImage="photo.on.rectangle">
-            Select multiple
-          </FormLabel>
-        </Form.Link>
-
-        <Form.Link
-          style={{
-            color: AC.link,
-          }}
-          href="/two"
-          systemImage="photo.on.rectangle"
-        >
-          Select multiple
-        </Form.Link>
-      </Form.Section>
-
-      <Form.Section>
         <Form.HStack style={{ gap: 16 }}>
           <Image
             source={{ uri: "https://github.com/evanbacon.png" }}
@@ -105,10 +71,6 @@ export default function Page() {
             size={24}
           />
         </Form.HStack>
-      </Form.Section>
-
-      <Form.Section>
-        <Link href="/credit">Acknowledgements</Link>
       </Form.Section>
 
       <Form.Section
@@ -193,6 +155,15 @@ export default function Page() {
         >
           Custom Icon
         </FormLabel>
+        <Form.Link
+          style={{
+            color: AC.systemCyan,
+          }}
+          href="/two"
+          systemImage="photo.on.rectangle"
+        >
+          Icon inherits link color
+        </Form.Link>
       </Form.Section>
 
       <Form.Section title="Table">
