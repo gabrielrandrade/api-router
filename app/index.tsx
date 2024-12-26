@@ -74,9 +74,9 @@ export default function Page() {
           <Text style={FormFont.secondary}>Bar</Text>
         </HStack>
       </FormList>
-      <FormList>
+      <FormList title="Links">
         {/* Table style: | A   B |*/}
-        <Link href="/two">Two</Link>
+        <Link href="/two">Next</Link>
         <Link href="/two">
           <View style={{ gap: 4 }}>
             <Text style={FormFont.default}>Evan's iPhone</Text>
@@ -91,6 +91,7 @@ export default function Page() {
           </FormLabel>
         </Link>
       </FormList>
+
       <FormList>
         {/* Table style: | A   B |*/}
         <HStack>

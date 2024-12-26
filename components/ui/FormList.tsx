@@ -59,7 +59,6 @@ export function FormList({
       } else if (child.type === Link) {
         wrapsFormItem = true;
 
-        let isTextOnly = true;
         const wrappedTextChildren = React.Children.map(
           child.props.children,
           (child) => {
@@ -70,7 +69,6 @@ export function FormList({
             if (typeof child === "string") {
               return <Text style={FormFont.default}>{child}</Text>;
             }
-            isTextOnly = false;
             return child;
           }
         );
