@@ -144,7 +144,7 @@ export default function Page() {
         >
           Custom color in link
         </Form.Link>
-        <Form.Text systemImage={"airpodspro.chargingcase.wireless.fill"}>
+        <Form.Text systemImage="airpodspro.chargingcase.wireless.fill">
           Item
         </Form.Text>
         <FormLabel
