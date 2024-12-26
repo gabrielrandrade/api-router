@@ -1,10 +1,11 @@
-import { IconSymbol } from "@/components/ui/IconSymbol";
+import { IconSymbol, IconSymbolName } from "@/components/ui/IconSymbol";
 import * as AppleColors from "@bacons/apple-colors";
 import { Href, Link as RouterLink, LinkProps } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import { forwardRef } from "react";
 import {
+  OpaqueColorValue,
   Text as RNText,
   TextProps,
   TextStyle,
@@ -110,12 +111,22 @@ const Colors = {
   separator: AppleColors.separator, // "rgba(61.2, 61.2, 66, 0.29)",
 };
 
+type SystemImageProps =
+  | IconSymbolName
+  | {
+      name: IconSymbolName;
+      color?: OpaqueColorValue;
+      size?: number;
+    };
+
 /** Text but with iOS default color and sizes. */
 export const Text = React.forwardRef<
   RNText,
   TextProps & {
     /** Value displayed on the right side of the form item. */
     hint?: React.ReactNode;
+    /** Adds a prefix SF Symbol image to the left of the text */
+    systemImage?: SystemImageProps;
   }
 >((props, ref) => {
   return (
@@ -133,6 +144,8 @@ export const Link = React.forwardRef<
   LinkProps & {
     /** Value displayed on the right side of the form item. */
     hint?: React.ReactNode;
+    /** Adds a prefix SF Symbol image to the left of the text */
+    systemImage?: SystemImageProps;
   }
 >((props, ref) => {
   return (
@@ -233,11 +246,36 @@ export function Section({
           });
         })();
 
-        if (hintView) {
+        const symbolView = (() => {
+          if (!child.props.systemImage) {
+            return null;
+          }
+
+          const symbolProps =
+            typeof child.props.systemImage === "string"
+              ? { name: child.props.systemImage }
+              : child.props.systemImage;
+
+          return (
+            <IconSymbol
+              name={symbolProps.name}
+              size={symbolProps.size ?? 28}
+              style={{ marginRight: 16 }}
+              color={
+                symbolProps.color ??
+                extractStyle(child.props.style, "color") ??
+                AppleColors.label
+              }
+            />
+          );
+        })();
+
+        if (hintView || symbolView) {
           child = (
             <HStack>
+              {symbolView}
               {child}
-              <View style={{ flex: 1 }} />
+              {hintView && <View style={{ flex: 1 }} />}
               {hintView}
             </HStack>
           );
@@ -283,6 +321,29 @@ export function Section({
           });
         })();
 
+        const symbolView = (() => {
+          if (!child.props.systemImage) {
+            return null;
+          }
+          const symbolProps =
+            typeof child.props.systemImage === "string"
+              ? { name: child.props.systemImage }
+              : child.props.systemImage;
+
+          return (
+            <IconSymbol
+              name={symbolProps.name}
+              size={symbolProps.size ?? 28}
+              style={{ marginRight: 16 }}
+              color={
+                symbolProps.color ??
+                extractStyle(child.props.style, "color") ??
+                AppleColors.label
+              }
+            />
+          );
+        })();
+
         child = React.cloneElement(child, {
           style: [FormFont.default, child.props.style],
           dynamicTypeRamp: "body",
@@ -292,6 +353,7 @@ export function Section({
           children: (
             <FormItem>
               <HStack>
+                {symbolView}
                 {wrappedTextChildren}
                 <View style={{ flex: 1 }} />
                 {hintView}
@@ -422,4 +484,17 @@ function mergedStyles(style: ViewStyle | TextStyle, props: any) {
   } else {
     return [style, props.style];
   }
+}
+
+function extractStyle(styleProp: any, key: string) {
+  if (styleProp == null) {
+    return undefined;
+  } else if (Array.isArray(styleProp)) {
+    return styleProp.find((style) => {
+      return style[key] != null;
+    })?.[key];
+  } else if (typeof styleProp === "object") {
+    return styleProp?.[key];
+  }
+  return null;
 }

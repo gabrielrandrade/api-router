@@ -18,6 +18,8 @@ const MAPPING = {
   "photo.on.rectangle": "photo-library",
   star: "star-border",
   "star.fill": "star",
+  "car.fill": "directions-car",
+  "airpodspro.chargingcase.wireless.fill": "headset",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

@@ -64,14 +64,19 @@ export default function Page() {
           }}
           href="/two"
         >
-          <FormLabel
-            onPress={() => {
-              console.log("hey");
-            }}
-            systemImage="photo.on.rectangle"
-          >
+          <FormLabel systemImage="photo.on.rectangle">
             Select multiple
           </FormLabel>
+        </Form.Link>
+
+        <Form.Link
+          style={{
+            color: AC.link,
+          }}
+          href="/two"
+          systemImage="photo.on.rectangle"
+        >
+          Select multiple
         </Form.Link>
       </Form.Section>
 
@@ -100,25 +105,6 @@ export default function Page() {
             size={24}
           />
         </Form.HStack>
-      </Form.Section>
-
-      <Form.Section>
-        <Form.HStack>
-          <Text style={Form.FormFont.default}>Version</Text>
-          <View style={{ flex: 1 }} />
-          <Text style={Form.FormFont.secondary}>1.2.7</Text>
-        </Form.HStack>
-
-        <Form.Text hint="iOS 18.3">System</Form.Text>
-      </Form.Section>
-
-      <Form.Section title="Developer">
-        <Form.Link target="_blank" href="https://evanbacon.dev">
-          Evan Bacon
-        </Form.Link>
-        <Form.Link href="https://evanbacon.dev">
-          Evan Bacon in browser
-        </Form.Link>
       </Form.Section>
 
       <Form.Section>
@@ -157,15 +143,6 @@ export default function Page() {
           <Text>Wrapped</Text>
         </View>
 
-        <FormLabel
-          onPress={() => {
-            console.log("hey");
-          }}
-          systemImage="photo.on.rectangle"
-        >
-          Select multiple
-        </FormLabel>
-
         {/* Table style: | A   B |*/}
         <Form.HStack>
           <Text style={Form.FormFont.default}>Foo</Text>
@@ -176,32 +153,53 @@ export default function Page() {
       <Form.Section title="Links">
         {/* Table style: | A   B |*/}
         <Link href="/two">Next</Link>
+
+        <Form.Link target="_blank" href="https://evanbacon.dev">
+          Target _blank
+        </Form.Link>
+
         <Link href="/two">
           <View style={{ gap: 4 }}>
-            <Text style={Form.FormFont.default}>Evan's iPhone</Text>
+            <Form.Text>Evan's iPhone</Form.Text>
             <Text style={Form.FormFont.caption}>This iPhone 16 Pro Max</Text>
           </View>
         </Link>
+
         <Link href="https://expo.dev">Expo</Link>
 
-        <Link href="/two">
-          <FormLabel color={AC.label} systemImage="star">
-            Stars
-          </FormLabel>
-        </Link>
-
         <Form.Link href="/two" hint="Normal">
-          Pick a value
+          Hint + Link
         </Form.Link>
       </Form.Section>
 
-      <Form.Section>
+      <Form.Section title="Icons">
+        <Form.Link href="/two" systemImage={"star"}>
+          Link + Icon
+        </Form.Link>
+        <Form.Link
+          href="/two"
+          systemImage={{ name: "car.fill", color: AC.systemPurple }}
+        >
+          Custom color in link
+        </Form.Link>
+        <Form.Text systemImage={"airpodspro.chargingcase.wireless.fill"}>
+          Item
+        </Form.Text>
+        <FormLabel
+          onPress={() => {
+            console.log("hey");
+          }}
+          systemImage="photo.on.rectangle"
+        >
+          Custom Icon
+        </FormLabel>
+      </Form.Section>
+
+      <Form.Section title="Table">
         {/* Table style: | A   B |*/}
-        <Form.HStack>
-          <Text style={Form.FormFont.default}>SDK 52</Text>
-          <View style={{ flex: 1 }} />
-          <Text style={Form.FormFont.secondary}>Expo Router v4</Text>
-        </Form.HStack>
+        <Form.Text hint="Expo Router v4">SDK 52</Form.Text>
+
+        {/* Custom version of same code */}
         <Form.HStack>
           <Text style={Form.FormFont.default}>SDK 51</Text>
           <View style={{ flex: 1 }} />

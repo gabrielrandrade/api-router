@@ -69,6 +69,7 @@ import * as AC from "@bacons/apple-colors";
 ## Form Items
 
 - `Form.Text` has extra types for `hint` and custom styles to have adaptive colors for dark mode. The font size is also larger to match the Apple defaults.
+- Adds the `systemImage` prop to append an SF Symbol icon before the text. The color of this icon will adopt the color of the text style.
 
 ```tsx
 <Form.Text>Hey</Form.Text>
@@ -118,6 +119,29 @@ Alternatively, use an HStack-type system instead of the `hint` hack:
   <View style={{ flex: 1 }} />
   <Form.Text style={Form.FormFont.secondary}>Bar</Form.Text>
 </Form.HStack>
+```
+
+Add a quick icon before the text:
+
+```tsx
+<Form.Link href="/two" systemImage="person.fill.badge.plus">
+  Evan Bacon
+</Form.Link>
+```
+
+Customize the color, size, etc:
+
+```tsx
+<Form.Link
+  href="/two"
+  systemImage={{
+    name: "person.fill.badge.plus",
+    color: AC.systemBlue,
+    size: 128,
+  }}
+>
+  Evan Bacon
+</Form.Link>
 ```
 
 ## Form Description and Item
