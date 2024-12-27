@@ -135,7 +135,7 @@ export default function Page() {
       </Form.Section>
 
       <Form.Section title="Icons">
-        <Form.Link href="/two" systemImage={"star"}>
+        <Form.Link href="/two" systemImage="star">
           Link + Icon
         </Form.Link>
         <Form.Link
@@ -157,7 +157,7 @@ export default function Page() {
         </FormLabel>
         <Form.Link
           style={{
-            color: AC.systemCyan,
+            color: AC.systemGreen,
           }}
           href="/two"
           systemImage="photo.on.rectangle"

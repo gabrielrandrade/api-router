@@ -6,6 +6,12 @@ Components that I use in Expo Router apps that are generally optimized for iOS, 
 
 <img src="https://github.com/user-attachments/assets/b550f9c1-2e01-4ec3-8050-450c33bfcce7" width="128px">
 
+For best results, just copy the files to another project. Here are the other deps:
+
+```
+bunx expo install @bacons/apple-colors expo-web-browser expo-symbols expo-blur
+```
+
 ## Stack
 
 Use the correct stack header settings for peak iOS defaults:

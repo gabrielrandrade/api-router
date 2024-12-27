@@ -219,10 +219,11 @@ export function Section({
       if (child.type === RNText || child.type === Text) {
         child = React.cloneElement(child, {
           dynamicTypeRamp: "body",
-          onPress: undefined,
-          style: [FormFont.default, child.props.style],
           numberOfLines: 1,
           adjustsFontSizeToFit: true,
+          ...child.props,
+          onPress: undefined,
+          style: [FormFont.default, child.props.style],
         });
 
         const hintView = (() => {
@@ -395,6 +396,10 @@ export function Section({
       children={childrenWithSeparator}
     />
   );
+
+  if (!title && !footer) {
+    return contents;
+  }
 
   return (
     <View>
