@@ -29,3 +29,5 @@ export default function Stack({
     />
   );
 }
+
+Stack.Screen = NativeStack.Screen;
