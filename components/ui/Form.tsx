@@ -163,7 +163,7 @@ export const Text = React.forwardRef<
 >(({ bold, ...props }, ref) => {
   const font: TextStyle = {
     ...FormFont.default,
-    fontWeight: bold ? "bold" : "normal",
+    fontWeight: bold ? "600" : "normal",
   };
 
   return (
@@ -187,8 +187,15 @@ export const Link = React.forwardRef<
     // TODO: Automatically detect this somehow.
     /** Is the link inside a header. */
     headerRight?: boolean;
+
+    bold?: boolean;
   }
->(({ children, headerRight, ...props }, ref) => {
+>(({ bold, children, headerRight, ...props }, ref) => {
+  const font: TextStyle = {
+    ...FormFont.default,
+    fontWeight: bold ? "600" : "normal",
+  };
+
   const resolvedChildren = (() => {
     if (headerRight) {
       const wrappedTextChildren = React.Children.map(children, (child) => {
@@ -200,7 +207,7 @@ export const Link = React.forwardRef<
           return (
             <RNText
               style={mergedStyleProp<TextStyle>(
-                { ...FormFont.default, color: AppleColors.link },
+                { ...font, color: AppleColors.link },
                 props.style
               )}
             >
@@ -213,6 +220,7 @@ export const Link = React.forwardRef<
 
       return (
         <HeaderButton
+          pressOpacity={0.7}
           style={{
             // Offset on the side so the margins line up. Unclear how to handle when this is used in headerLeft.
             // We should automatically detect it somehow.
@@ -232,7 +240,7 @@ export const Link = React.forwardRef<
       {...props}
       asChild={props.asChild ?? headerRight}
       ref={ref}
-      style={mergedStyleProp<TextStyle>(FormFont.default, props.style)}
+      style={mergedStyleProp<TextStyle>(font, props.style)}
       onPress={
         process.env.EXPO_OS === "web"
           ? props.onPress

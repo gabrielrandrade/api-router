@@ -1,44 +1,63 @@
 import Stack from "@/components/ui/Stack";
 import ThemeProvider from "@/components/ui/ThemeProvider";
-import { Button, Text } from "react-native";
-
-import * as AC from "@bacons/apple-colors";
+import { Text, View } from "react-native";
 
 import * as Form from "@/components/ui/Form";
-import { HeaderButton } from "@/components/ui/Header";
 
 export default function Layout() {
   return (
     <ThemeProvider>
-      <Stack
-        screenOptions={{
-          title: "🥓 Bacon",
-          headerRight: ({ tintColor }) => (
-            <>
-              <Form.Link headerRight href="/two">
-                Hey
+      <Stack>
+        <Stack.Screen
+          name="index"
+          options={{
+            headerRight: () => (
+              <Form.Link headerRight href="/account">
+                <Avatar />
               </Form.Link>
-              <Form.Link headerRight style={{ color: tintColor }} href="/two">
-                Hey
+            ),
+            headerLargeTitle: true,
+          }}
+        />
+        <Stack.Screen
+          name="account"
+          options={{
+            presentation: "modal",
+            headerRight: () => (
+              <Form.Link headerRight bold href="/" dismissTo>
+                Done
               </Form.Link>
-            </>
-          ),
-          // headerRight: ({ tintColor }) => (
-          //   <>
-          //     <Form.Link headerRight href="/two">
-          //       Hey
-          //     </Form.Link>
-          //     <Form.Link
-          //       headerRight
-          //       style={{ color: AC.systemPink }}
-          //       href="/two"
-          //     >
-          //       Hey
-          //     </Form.Link>
-          //   </>
-          // ),
-        }}
-      />
+            ),
+          }}
+        />
+      </Stack>
     </ThemeProvider>
+  );
+}
+
+function Avatar() {
+  return (
+    <View
+      style={{
+        padding: 6,
+        borderRadius: 99,
+        experimental_backgroundImage: `linear-gradient(to bottom, #A5ABB8, #858994)`,
+        aspectRatio: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text
+        style={{
+          color: "white",
+          fontFamily: "ui-rounded",
+          fontSize: 14,
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+      >
+        EB
+      </Text>
+    </View>
   );
 }
