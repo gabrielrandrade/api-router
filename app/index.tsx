@@ -94,6 +94,7 @@ export default function Page() {
         <Text style={{ fontWeight: "bold", color: AC.systemPink }}>
           Custom style
         </Text>
+        <Form.Text bold>Bold</Form.Text>
 
         <View>
           <Text>Wrapped</Text>

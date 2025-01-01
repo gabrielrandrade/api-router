@@ -1,4 +1,5 @@
 import { Stack as NativeStack } from "expo-router";
+import React from "react";
 
 // These are the default stack options for iOS, they disable on other platforms.
 const DEFAULT_STACK_HEADER: import("@react-navigation/native-stack").NativeStackNavigationOptions =

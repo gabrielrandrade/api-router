@@ -2,7 +2,7 @@ import { IconSymbol, IconSymbolName } from "@/components/ui/IconSymbol";
 import * as AppleColors from "@bacons/apple-colors";
 import { Href, Link as RouterLink, LinkProps, Stack } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { forwardRef } from "react";
 import {
   OpaqueColorValue,
@@ -17,6 +17,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { BodyScrollView } from "./BodyScrollView";
+import { HeaderButton } from "./Header";
 
 export const List = forwardRef<
   any,
@@ -156,14 +157,21 @@ export const Text = React.forwardRef<
     hint?: React.ReactNode;
     /** Adds a prefix SF Symbol image to the left of the text */
     systemImage?: SystemImageProps;
+
+    bold?: boolean;
   }
->((props, ref) => {
+>(({ bold, ...props }, ref) => {
+  const font: TextStyle = {
+    ...FormFont.default,
+    fontWeight: bold ? "bold" : "normal",
+  };
+
   return (
     <RNText
       dynamicTypeRamp="body"
       {...props}
       ref={ref}
-      style={mergedStyles(FormFont.default, props)}
+      style={mergedStyleProp(font, props.style)}
     />
   );
 });
@@ -175,14 +183,56 @@ export const Link = React.forwardRef<
     hint?: React.ReactNode;
     /** Adds a prefix SF Symbol image to the left of the text */
     systemImage?: SystemImageProps;
+
+    // TODO: Automatically detect this somehow.
+    /** Is the link inside a header. */
+    headerRight?: boolean;
   }
->((props, ref) => {
+>(({ children, headerRight, ...props }, ref) => {
+  const resolvedChildren = (() => {
+    if (headerRight) {
+      const wrappedTextChildren = React.Children.map(children, (child) => {
+        // Filter out empty children
+        if (!child) {
+          return null;
+        }
+        if (typeof child === "string") {
+          return (
+            <RNText
+              style={mergedStyleProp<TextStyle>(
+                { ...FormFont.default, color: AppleColors.link },
+                props.style
+              )}
+            >
+              {child}
+            </RNText>
+          );
+        }
+        return child;
+      });
+
+      return (
+        <HeaderButton
+          style={{
+            // Offset on the side so the margins line up. Unclear how to handle when this is used in headerLeft.
+            // We should automatically detect it somehow.
+            marginRight: -8,
+          }}
+        >
+          {wrappedTextChildren}
+        </HeaderButton>
+      );
+    }
+    return children;
+  })();
+
   return (
     <RouterLink
       dynamicTypeRamp="body"
       {...props}
+      asChild={props.asChild ?? headerRight}
       ref={ref}
-      style={mergedStyles(FormFont.default, props)}
+      style={mergedStyleProp<TextStyle>(FormFont.default, props.style)}
       onPress={
         process.env.EXPO_OS === "web"
           ? props.onPress
@@ -204,6 +254,7 @@ export const Link = React.forwardRef<
               }
             }
       }
+      children={resolvedChildren}
     />
   );
 });
@@ -519,7 +570,7 @@ function mergedStyles(style: ViewStyle | TextStyle, props: any) {
     return [style, props.style];
   }
 }
-function mergedStyleProp<TStyle extends ViewStyle | TextStyle>(
+export function mergedStyleProp<TStyle extends ViewStyle | TextStyle>(
   style: TStyle,
   styleProps?: StyleProp<TStyle> | null
 ): StyleProp<TStyle> {

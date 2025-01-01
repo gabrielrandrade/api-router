@@ -35,6 +35,21 @@ export default function Layout() {
 
 Use `headerLargeTitle: true` to get the large header title.
 
+Use `<Form.Link headerRight>` to add a link to the right side of the header with correct hit size and padding for Forms. The default color will be system blue.
+
+```tsx
+<Stack
+  screenOptions={{
+    title: "🥓 Bacon",
+    headerRight: () => (
+      <Form.Link headerRight href="/info">
+        Info
+      </Form.Link>
+    ),
+  }}
+/>
+```
+
 ## Forms
 
 Start lists with a `<Form.List>` and add sections with `<Form.Section>`. Setting `navigationTitle="Settings"` will update the title of the stack header.
