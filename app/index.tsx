@@ -1,4 +1,3 @@
-import { BodyScrollView } from "@/components/ui/BodyScrollView";
 import * as Form from "@/components/ui/Form";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import * as AC from "@bacons/apple-colors";
@@ -8,12 +7,7 @@ import { Image, OpaqueColorValue, Text, View } from "react-native";
 
 export default function Page() {
   return (
-    <BodyScrollView
-      contentContainerStyle={{
-        padding: 16,
-        gap: 24,
-      }}
-    >
+    <Form.List navigationTitle="Settings">
       <Form.Section>
         <View style={{ alignItems: "center", gap: 8, padding: 16 }}>
           <Image
@@ -177,7 +171,7 @@ export default function Page() {
           <Text style={Form.FormFont.secondary}>Expo Router v3</Text>
         </Form.HStack>
       </Form.Section>
-    </BodyScrollView>
+    </Form.List>
   );
 }
 

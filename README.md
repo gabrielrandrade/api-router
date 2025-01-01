@@ -37,6 +37,24 @@ Use `headerLargeTitle: true` to get the large header title.
 
 ## Forms
 
+Start lists with a `<Form.List>` and add sections with `<Form.Section>`. Setting `navigationTitle="Settings"` will update the title of the stack header.
+
+```tsx
+<Form.List navigationTitle="Settings">
+  <Form.Section title="Developer">
+    <Form.Link target="_blank" href="https://evanbacon.dev">
+      Evan Bacon
+    </Form.Link>
+    <Form.Link href="https://evanbacon.dev">Evan Bacon in browser</Form.Link>
+  </Form.Section>
+</Form.List>
+```
+
+<details>
+  <summary>Internals</summary>
+
+Form list is a wrapper around a scroll view with some extra styles and helpers.
+
 ```tsx
 <BodyScrollView
   contentContainerStyle={{
@@ -52,6 +70,8 @@ Use `headerLargeTitle: true` to get the large header title.
   </Form.Section>
 </BodyScrollView>
 ```
+
+</details>
 
 ## Form Sections
 

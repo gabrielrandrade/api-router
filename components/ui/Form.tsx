@@ -1,12 +1,14 @@
 import { IconSymbol, IconSymbolName } from "@/components/ui/IconSymbol";
 import * as AppleColors from "@bacons/apple-colors";
-import { Href, Link as RouterLink, LinkProps } from "expo-router";
+import { Href, Link as RouterLink, LinkProps, Stack } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import { forwardRef } from "react";
 import {
   OpaqueColorValue,
   Text as RNText,
+  ScrollViewProps,
+  StyleProp,
   TextProps,
   TextStyle,
   TouchableHighlight,
@@ -14,6 +16,33 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native";
+import { BodyScrollView } from "./BodyScrollView";
+
+export const List = forwardRef<
+  any,
+  ScrollViewProps & {
+    /** Set the Expo Router `<Stack />` title when mounted. */
+    navigationTitle?: string;
+  }
+>(({ contentContainerStyle, ...props }, ref) => {
+  return (
+    <>
+      {props.navigationTitle && (
+        <Stack.Screen options={{ title: props.navigationTitle }} />
+      )}
+      <BodyScrollView
+        contentContainerStyle={mergedStyleProp(
+          {
+            padding: 16,
+            gap: 24,
+          },
+          contentContainerStyle
+        )}
+        {...props}
+      />
+    </>
+  );
+});
 
 const ListItemPaddingContext = React.createContext<
   | [
@@ -489,6 +518,17 @@ function mergedStyles(style: ViewStyle | TextStyle, props: any) {
   } else {
     return [style, props.style];
   }
+}
+function mergedStyleProp<TStyle extends ViewStyle | TextStyle>(
+  style: TStyle,
+  styleProps?: StyleProp<TStyle> | null
+): StyleProp<TStyle> {
+  if (styleProps == null) {
+    return style;
+  } else if (Array.isArray(styleProps)) {
+    return [style, ...styleProps];
+  }
+  return [style, styleProps];
 }
 
 function extractStyle(styleProp: any, key: string) {
