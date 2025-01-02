@@ -4,6 +4,10 @@ import { Text, View } from "react-native";
 
 import * as Form from "@/components/ui/Form";
 
+export const unstable_settings = {
+  initialRouteName: "index",
+};
+
 export default function Layout() {
   return (
     <ThemeProvider>
@@ -24,6 +28,7 @@ export default function Layout() {
           name="account"
           options={{
             presentation: "modal",
+
             headerRight: () => (
               <Form.Link headerRight bold href="/" dismissTo>
                 Done

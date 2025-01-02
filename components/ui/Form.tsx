@@ -2,7 +2,7 @@ import { IconSymbol, IconSymbolName } from "@/components/ui/IconSymbol";
 import * as AppleColors from "@bacons/apple-colors";
 import { Href, Link as RouterLink, LinkProps, Stack } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import { forwardRef } from "react";
 import {
   OpaqueColorValue,
@@ -198,6 +198,9 @@ export const Link = React.forwardRef<
 
   const resolvedChildren = (() => {
     if (headerRight) {
+      if (process.env.EXPO_OS === "web") {
+        return <div style={{ paddingRight: 16 }}>{children}</div>;
+      }
       const wrappedTextChildren = React.Children.map(children, (child) => {
         // Filter out empty children
         if (!child) {
@@ -238,7 +241,9 @@ export const Link = React.forwardRef<
     <RouterLink
       dynamicTypeRamp="body"
       {...props}
-      asChild={props.asChild ?? headerRight}
+      asChild={
+        props.asChild ?? (process.env.EXPO_OS === "web" ? false : headerRight)
+      }
       ref={ref}
       style={mergedStyleProp<TextStyle>(font, props.style)}
       onPress={

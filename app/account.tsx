@@ -22,7 +22,7 @@ export default function Page() {
           </View>
         </Form.HStack>
         <Form.Link
-          href="/gamecenter"
+          href="/account"
           hint="Baconator"
           systemImage={{ name: "gamecontroller.fill", color: AC.systemPink }}
         >
