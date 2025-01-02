@@ -263,3 +263,23 @@ Be sure to use `@bacons/apple-colors` for high-quality P3 colors.
 ## Icons
 
 Use the `IconSymbol` component to use Apple's SF Symbols.
+
+
+## Status Bar
+
+Avoid using `<StatusBar>` on iOS as the system has built-in support for changing the color better than most custom solutions. Enable OS-changing with:
+
+```js
+{
+  "expo": {
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "infoPlist": {
+        "UIViewControllerBasedStatusBarAppearance": true,
+      }
+    }
+  }
+}
+```
+
+> This won't work as expected in Expo Go. Use a dev client to understand the behavior better.
