@@ -295,178 +295,181 @@ export function Section({
   title,
   footer,
   ...props
-}: ViewProps & { title?: string; footer?: string | React.ReactNode }) {
+}: ViewProps & {
+  title?: string | React.ReactNode;
+  footer?: string | React.ReactNode;
+}) {
   const childrenWithSeparator = React.Children.map(children, (child, index) => {
-    if (React.isValidElement(child)) {
-      const isLastChild = index === React.Children.count(children) - 1;
+    if (!React.isValidElement(child)) {
+      return child;
+    }
+    const isLastChild = index === React.Children.count(children) - 1;
 
-      // Extract onPress from child
-      const originalOnPress = child.props.onPress;
-      let wrapsFormItem = false;
-      // If child is type of Text, add default props
-      if (child.type === RNText || child.type === Text) {
-        child = React.cloneElement(child, {
-          dynamicTypeRamp: "body",
-          numberOfLines: 1,
-          adjustsFontSizeToFit: true,
-          ...child.props,
-          onPress: undefined,
-          style: [FormFont.default, child.props.style],
+    // Extract onPress from child
+    const originalOnPress = child.props.onPress;
+    let wrapsFormItem = false;
+    // If child is type of Text, add default props
+    if (child.type === RNText || child.type === Text) {
+      child = React.cloneElement(child, {
+        dynamicTypeRamp: "body",
+        numberOfLines: 1,
+        adjustsFontSizeToFit: true,
+        ...child.props,
+        onPress: undefined,
+        style: [FormFont.default, child.props.style],
+      });
+
+      const hintView = (() => {
+        if (!child.props.hint) {
+          return null;
+        }
+
+        return React.Children.map(child.props.hint, (child) => {
+          // Filter out empty children
+          if (!child) {
+            return null;
+          }
+          if (typeof child === "string") {
+            return (
+              <RNText dynamicTypeRamp="body" style={FormFont.secondary}>
+                {child}
+              </RNText>
+            );
+          }
+          return child;
         });
+      })();
 
-        const hintView = (() => {
-          if (!child.props.hint) {
+      const symbolView = (() => {
+        if (!child.props.systemImage) {
+          return null;
+        }
+
+        const symbolProps =
+          typeof child.props.systemImage === "string"
+            ? { name: child.props.systemImage }
+            : child.props.systemImage;
+
+        return (
+          <IconSymbol
+            name={symbolProps.name}
+            size={symbolProps.size ?? 28}
+            style={{ marginRight: 16 }}
+            color={
+              symbolProps.color ??
+              extractStyle(child.props.style, "color") ??
+              AppleColors.label
+            }
+          />
+        );
+      })();
+
+      if (hintView || symbolView) {
+        child = (
+          <HStack>
+            {symbolView}
+            {child}
+            {hintView && <View style={{ flex: 1 }} />}
+            {hintView}
+          </HStack>
+        );
+      }
+    } else if (child.type === RouterLink || child.type === Link) {
+      wrapsFormItem = true;
+
+      const wrappedTextChildren = React.Children.map(
+        child.props.children,
+        (linkChild) => {
+          // Filter out empty children
+          if (!linkChild) {
             return null;
           }
+          if (typeof linkChild === "string") {
+            return (
+              <RNText
+                dynamicTypeRamp="body"
+                style={mergedStyles(FormFont.default, child.props)}
+              >
+                {linkChild}
+              </RNText>
+            );
+          }
+          return linkChild;
+        }
+      );
 
-          return React.Children.map(child.props.hint, (child) => {
-            // Filter out empty children
-            if (!child) {
-              return null;
-            }
-            if (typeof child === "string") {
-              return (
-                <RNText dynamicTypeRamp="body" style={FormFont.secondary}>
-                  {child}
-                </RNText>
-              );
-            }
-            return child;
-          });
-        })();
+      const hintView = (() => {
+        if (!child.props.hint) {
+          return null;
+        }
 
-        const symbolView = (() => {
-          if (!child.props.systemImage) {
+        return React.Children.map(child.props.hint, (child) => {
+          // Filter out empty children
+          if (!child) {
             return null;
           }
+          if (typeof child === "string") {
+            return <Text style={FormFont.secondary}>{child}</Text>;
+          }
+          return child;
+        });
+      })();
 
-          const symbolProps =
-            typeof child.props.systemImage === "string"
-              ? { name: child.props.systemImage }
-              : child.props.systemImage;
+      const symbolView = (() => {
+        if (!child.props.systemImage) {
+          return null;
+        }
+        const symbolProps =
+          typeof child.props.systemImage === "string"
+            ? { name: child.props.systemImage }
+            : child.props.systemImage;
 
-          return (
-            <IconSymbol
-              name={symbolProps.name}
-              size={symbolProps.size ?? 28}
-              style={{ marginRight: 16 }}
-              color={
-                symbolProps.color ??
-                extractStyle(child.props.style, "color") ??
-                AppleColors.label
-              }
-            />
-          );
-        })();
+        return (
+          <IconSymbol
+            name={symbolProps.name}
+            size={symbolProps.size ?? 28}
+            style={{ marginRight: 16 }}
+            color={
+              symbolProps.color ??
+              extractStyle(child.props.style, "color") ??
+              AppleColors.label
+            }
+          />
+        );
+      })();
 
-        if (hintView || symbolView) {
-          child = (
+      child = React.cloneElement(child, {
+        style: [FormFont.default, child.props.style],
+        dynamicTypeRamp: "body",
+        numberOfLines: 1,
+        adjustsFontSizeToFit: true,
+        asChild: true,
+        children: (
+          <FormItem>
             <HStack>
               {symbolView}
-              {child}
-              {hintView && <View style={{ flex: 1 }} />}
+              {wrappedTextChildren}
+              <View style={{ flex: 1 }} />
               {hintView}
+              <View style={{ paddingLeft: 12 }}>
+                <LinkChevronIcon href={child.props.href} />
+              </View>
             </HStack>
-          );
-        }
-      } else if (child.type === RouterLink || child.type === Link) {
-        wrapsFormItem = true;
-
-        const wrappedTextChildren = React.Children.map(
-          child.props.children,
-          (linkChild) => {
-            // Filter out empty children
-            if (!linkChild) {
-              return null;
-            }
-            if (typeof linkChild === "string") {
-              return (
-                <RNText
-                  dynamicTypeRamp="body"
-                  style={mergedStyles(FormFont.default, child.props)}
-                >
-                  {linkChild}
-                </RNText>
-              );
-            }
-            return linkChild;
-          }
-        );
-
-        const hintView = (() => {
-          if (!child.props.hint) {
-            return null;
-          }
-
-          return React.Children.map(child.props.hint, (child) => {
-            // Filter out empty children
-            if (!child) {
-              return null;
-            }
-            if (typeof child === "string") {
-              return <Text style={FormFont.secondary}>{child}</Text>;
-            }
-            return child;
-          });
-        })();
-
-        const symbolView = (() => {
-          if (!child.props.systemImage) {
-            return null;
-          }
-          const symbolProps =
-            typeof child.props.systemImage === "string"
-              ? { name: child.props.systemImage }
-              : child.props.systemImage;
-
-          return (
-            <IconSymbol
-              name={symbolProps.name}
-              size={symbolProps.size ?? 28}
-              style={{ marginRight: 16 }}
-              color={
-                symbolProps.color ??
-                extractStyle(child.props.style, "color") ??
-                AppleColors.label
-              }
-            />
-          );
-        })();
-
-        child = React.cloneElement(child, {
-          style: [FormFont.default, child.props.style],
-          dynamicTypeRamp: "body",
-          numberOfLines: 1,
-          adjustsFontSizeToFit: true,
-          asChild: true,
-          children: (
-            <FormItem>
-              <HStack>
-                {symbolView}
-                {wrappedTextChildren}
-                <View style={{ flex: 1 }} />
-                {hintView}
-                <View style={{ paddingLeft: 12 }}>
-                  <LinkChevronIcon href={child.props.href} />
-                </View>
-              </HStack>
-            </FormItem>
-          ),
-        });
-      }
-      // Ensure child is a FormItem otherwise wrap it in a FormItem
-      if (!wrapsFormItem && child.type !== FormItem) {
-        child = <FormItem onPress={originalOnPress}>{child}</FormItem>;
-      }
-
-      return (
-        <>
-          {child}
-          {!isLastChild && <Separator />}
-        </>
-      );
+          </FormItem>
+        ),
+      });
     }
-    return child;
+    // Ensure child is a FormItem otherwise wrap it in a FormItem
+    if (!wrapsFormItem && child.type !== FormItem) {
+      child = <FormItem onPress={originalOnPress}>{child}</FormItem>;
+    }
+
+    return (
+      <>
+        {child}
+        {!isLastChild && <Separator />}
+      </>
+    );
   });
 
   const contents = (
