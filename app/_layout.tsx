@@ -48,7 +48,9 @@ function Avatar() {
       style={{
         padding: 6,
         borderRadius: 99,
-        experimental_backgroundImage: `linear-gradient(to bottom, #A5ABB8, #858994)`,
+        [process.env.EXPO_OS === "web"
+          ? `backgroundImage`
+          : `experimental_backgroundImage`]: `linear-gradient(to bottom, #A5ABB8, #858994)`,
         aspectRatio: 1,
         justifyContent: "center",
         alignItems: "center",
