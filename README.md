@@ -50,9 +50,14 @@ Use `<Form.Link headerRight>` to add a link to the right side of the header with
 />
 ```
 
+This stack uses `vaul` on web to make `modal` look like a native modal.
+
 ## Bottom sheet
 
+> Works on web too!
+
 <img src="https://github.com/user-attachments/assets/ff07e563-6802-429f-9cb0-891f0070ec03" width="256px">
+<img src="https://github.com/user-attachments/assets/e6c6200f-e03a-41be-99e4-d131a63c1464" width="256px">
 
 You can open routes as a bottom sheet on iOS:
 
@@ -263,7 +268,6 @@ Be sure to use `@bacons/apple-colors` for high-quality P3 colors.
 ## Icons
 
 Use the `IconSymbol` component to use Apple's SF Symbols.
-
 
 ## Status Bar
 
