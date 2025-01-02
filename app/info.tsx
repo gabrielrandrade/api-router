@@ -1,72 +1,11 @@
 import * as Form from "@/components/ui/Form";
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
-import { ComponentProps } from "react";
-import { Image, OpaqueColorValue, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 export default function Page() {
   return (
-    <Form.List navigationTitle="Settings">
-      <Form.Section>
-        <View style={{ alignItems: "center", gap: 8, padding: 16 }}>
-          <Image
-            source={{ uri: "https://github.com/evanbacon.png" }}
-            style={{
-              aspectRatio: 1,
-              height: 64,
-              borderRadius: 8,
-            }}
-          />
-          <Form.Text
-            style={{
-              fontSize: 20,
-              fontWeight: "600",
-            }}
-          >
-            Web Inspector
-          </Form.Text>
-          <Text style={{ textAlign: "center", fontSize: 14 }}>
-            Web development tool for iOS and iPadOS.{" "}
-            <Form.Link
-              style={{
-                color: AC.link,
-              }}
-              href="/info"
-            >
-              Learn more...
-            </Form.Link>
-          </Text>
-        </View>
-      </Form.Section>
-
-      <Form.Section>
-        <Form.HStack style={{ gap: 16 }}>
-          <Image
-            source={{ uri: "https://github.com/evanbacon.png" }}
-            style={{
-              aspectRatio: 1,
-              height: 48,
-              borderRadius: 999,
-            }}
-          />
-          <View style={{ gap: 4 }}>
-            <Form.Text style={Form.FormFont.default}>Evan's iPhone</Form.Text>
-            <Form.Text style={Form.FormFont.caption}>
-              This iPhone 16 Pro Max
-            </Form.Text>
-          </View>
-
-          <View style={{ flex: 1 }} />
-
-          <IconSymbol
-            color={AC.systemBlue}
-            name="person.fill.badge.plus"
-            size={24}
-          />
-        </Form.HStack>
-      </Form.Section>
-
+    <Form.List navigationTitle="Info">
       <Form.Section
         title="Vision"
         footer={
@@ -142,14 +81,7 @@ export default function Page() {
         <Form.Text systemImage="airpodspro.chargingcase.wireless.fill">
           Item
         </Form.Text>
-        <FormLabel
-          onPress={() => {
-            console.log("hey");
-          }}
-          systemImage="photo.on.rectangle"
-        >
-          Custom Icon
-        </FormLabel>
+
         <Form.Link
           style={{
             color: AC.systemGreen,
@@ -175,28 +107,3 @@ export default function Page() {
     </Form.List>
   );
 }
-
-function FormLabel({
-  children,
-  systemImage,
-  color,
-}: {
-  /** Only used when `<FormLabel />` is a direct child of `<Section />`. */
-  onPress?: () => void;
-  children: React.ReactNode;
-  systemImage: ComponentProps<typeof IconSymbol>["name"];
-  color?: OpaqueColorValue;
-}) {
-  return (
-    <Form.HStack style={{ gap: 16 }}>
-      <IconSymbol name={systemImage} size={28} color={color ?? AC.systemBlue} />
-      <Text style={Form.FormFont.default}>{children}</Text>
-    </Form.HStack>
-  );
-}
-
-// List
-// Link
-// ol
-// ul
-// table -> two columns

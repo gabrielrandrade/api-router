@@ -50,6 +50,30 @@ Use `<Form.Link headerRight>` to add a link to the right side of the header with
 />
 ```
 
+## Bottom sheet
+
+You can open routes as a bottom sheet on iOS:
+
+```tsx
+<Stack.Screen name="info" sheet />
+```
+
+This sets custom options for [React Native Screens](https://github.com/software-mansion/react-native-screens/blob/main/native-stack/README.md#sheetalloweddetents):
+
+```js
+{
+  presentation: "formSheet",
+  gestureDirection: "vertical",
+  animation: "slide_from_bottom",
+  sheetGrabberVisible: true,
+  sheetInitialDetentIndex: 0,
+  sheetAllowedDetents: [0.5, 1.0],
+}
+```
+
+- Use `sheetAllowedDetents` to change the snap points of the sheet.
+- Change the corder radius with `sheetCornerRadius: 48`.
+
 ## Forms
 
 Start lists with a `<Form.List>` and add sections with `<Form.Section>`. Setting `navigationTitle="Settings"` will update the title of the stack header.
