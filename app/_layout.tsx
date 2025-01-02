@@ -4,6 +4,10 @@ import { Text, View } from "react-native";
 
 import * as Form from "@/components/ui/Form";
 
+export const unstable_settings = {
+  initialRouteName: "index",
+};
+
 export default function Layout() {
   return (
     <ThemeProvider>
@@ -12,7 +16,7 @@ export default function Layout() {
           name="index"
           options={{
             headerRight: () => (
-              <Form.Link headerRight href="/account">
+              <Form.Link href="/account">
                 <Avatar />
               </Form.Link>
             ),
@@ -23,15 +27,10 @@ export default function Layout() {
         <Stack.Screen
           name="account"
           options={{
-            presentation: "formSheet",
-            gestureDirection: "vertical",
-            animation: "slide_from_bottom",
-            sheetGrabberVisible: true,
-            sheetInitialDetentIndex: 0,
-            sheetAllowedDetents: [0.5, 1.0],
+            presentation: "modal",
 
             headerRight: () => (
-              <Form.Link headerRight bold href="/" dismissTo>
+              <Form.Link bold href="/" dismissTo>
                 Done
               </Form.Link>
             ),
