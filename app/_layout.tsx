@@ -12,17 +12,24 @@ export default function Layout() {
           name="index"
           options={{
             headerRight: () => (
-              <Form.Link href="/account">
+              <Form.Link headerRight href="/account">
                 <Avatar />
               </Form.Link>
             ),
             headerLargeTitle: true,
           }}
         />
+
         <Stack.Screen
           name="account"
           options={{
-            presentation: "modal",
+            presentation: "formSheet",
+            gestureDirection: "vertical",
+            animation: "slide_from_bottom",
+            sheetGrabberVisible: true,
+            sheetInitialDetentIndex: 0,
+            sheetAllowedDetents: [0.5, 1.0],
+
             headerRight: () => (
               <Form.Link headerRight bold href="/" dismissTo>
                 Done

@@ -8,36 +8,36 @@ import { Image, OpaqueColorValue, Text, View } from "react-native";
 import { Drawer } from "vaul";
 
 export default function Page() {
-  return (
-    <Drawer.Root>
-      <Drawer.Trigger>Open Drawer</Drawer.Trigger>
-      <Drawer.Portal>
-        <Drawer.Overlay
-          style={{
-            position: "fixed",
-            inset: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-          }}
-        />
-        <Drawer.Content
-          style={{
-            backgroundColor: "#f3f4f6",
-            height: "fit-content",
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            outline: "none",
-          }}
-        >
-          <View style={{ padding: 16, backgroundColor: "white" }}>
-            {/* Content */}
-            Hey
-          </View>
-        </Drawer.Content>
-      </Drawer.Portal>
-    </Drawer.Root>
-  );
+  // return (
+  //   <Drawer.Root>
+  //     <Drawer.Trigger>Open Drawer</Drawer.Trigger>
+  //     <Drawer.Portal>
+  //       <Drawer.Overlay
+  //         style={{
+  //           position: "fixed",
+  //           inset: 0,
+  //           backgroundColor: "rgba(0, 0, 0, 0.4)",
+  //         }}
+  //       />
+  //       <Drawer.Content
+  //         style={{
+  //           backgroundColor: "#f3f4f6",
+  //           height: "fit-content",
+  //           position: "fixed",
+  //           bottom: 0,
+  //           left: 0,
+  //           right: 0,
+  //           outline: "none",
+  //         }}
+  //       >
+  //         <View style={{ padding: 16, backgroundColor: "white" }}>
+  //           {/* Content */}
+  //           Hey
+  //         </View>
+  //       </Drawer.Content>
+  //     </Drawer.Portal>
+  //   </Drawer.Root>
+  // );
 
   return (
     <Form.List navigationTitle="Settings">
