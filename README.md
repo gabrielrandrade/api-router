@@ -2,9 +2,9 @@
 
 Components that I use in Expo Router apps that are generally optimized for iOS, dark mode, and servers. Main part is the forms which look like Apple's settings app. These should be replaced with proper SwiftUI/Jetpack Compose in the future, but it's still useful to have JS versions for platforms that don't have native support.
 
-<img src="https://github.com/user-attachments/assets/00903906-c8bf-42d2-81b7-337ba76ea890" width="128px">
+<img src="https://github.com/user-attachments/assets/00903906-c8bf-42d2-81b7-337ba76ea890" width="256px">
 
-<img src="https://github.com/user-attachments/assets/b550f9c1-2e01-4ec3-8050-450c33bfcce7" width="128px">
+<img src="https://github.com/user-attachments/assets/b550f9c1-2e01-4ec3-8050-450c33bfcce7" width="256px">
 
 For best results, just copy the files to another project. Here are the other deps:
 
@@ -49,6 +49,32 @@ Use `<Form.Link headerRight>` to add a link to the right side of the header with
   }}
 />
 ```
+
+## Bottom sheet
+
+<img src="https://github.com/user-attachments/assets/ff07e563-6802-429f-9cb0-891f0070ec03" width="256px">
+
+You can open routes as a bottom sheet on iOS:
+
+```tsx
+<Stack.Screen name="info" sheet />
+```
+
+This sets custom options for [React Native Screens](https://github.com/software-mansion/react-native-screens/blob/main/native-stack/README.md#sheetalloweddetents):
+
+```js
+{
+  presentation: "formSheet",
+  gestureDirection: "vertical",
+  animation: "slide_from_bottom",
+  sheetGrabberVisible: true,
+  sheetInitialDetentIndex: 0,
+  sheetAllowedDetents: [0.5, 1.0],
+}
+```
+
+- Use `sheetAllowedDetents` to change the snap points of the sheet.
+- Change the corder radius with `sheetCornerRadius: 48`.
 
 ## Forms
 

@@ -65,7 +65,7 @@ export default function Page() {
               style={{
                 color: AC.link,
               }}
-              href="/two"
+              href="/info"
             >
               Learn more...
             </Form.Link>

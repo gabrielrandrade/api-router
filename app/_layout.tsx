@@ -19,7 +19,7 @@ export default function Layout() {
             headerLargeTitle: true,
           }}
         />
-
+        <Stack.Screen name="info" sheet />
         <Stack.Screen
           name="account"
           options={{
