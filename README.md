@@ -290,6 +290,8 @@ Avoid using `<StatusBar>` on iOS as the system has built-in support for changing
 
 ## Segments
 
+<img width="427" alt="Screenshot 2025-01-02 at 3 15 33 PM" src="https://github.com/user-attachments/assets/178a1eff-83e4-4a37-9c1b-530ef9f9c7e8" />
+
 > `npx expo install @react-native-segmented-control/segmented-control`
 
 For tabbed content that doesn't belong in the router, use the `Segment` component:
