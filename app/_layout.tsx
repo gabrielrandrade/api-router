@@ -16,7 +16,7 @@ export default function Layout() {
           name="index"
           options={{
             headerRight: () => (
-              <Form.Link href="/account">
+              <Form.Link headerRight href="/account">
                 <Avatar />
               </Form.Link>
             ),
