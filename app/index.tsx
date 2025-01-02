@@ -25,19 +25,20 @@ export default function Page() {
                 fontWeight: "600",
               }}
             >
-              Web Inspector
+              Bacon Components
             </Form.Text>
-            <Text style={{ textAlign: "center", fontSize: 14 }}>
-              Web development tool for iOS and iPadOS.{" "}
+            <Form.Text style={{ textAlign: "center", fontSize: 14 }}>
+              Copy/paste components for universal Expo Router apps.{" "}
               <Form.Link
                 style={{
                   color: AC.link,
+                  fontSize: 14,
                 }}
                 href="/info"
               >
                 Learn more...
               </Form.Link>
-            </Text>
+            </Form.Text>
           </View>
         </Form.Section>
 
@@ -69,7 +70,7 @@ export default function Page() {
         </Form.Section>
 
         <Form.Section
-          title="Vision"
+          title="Links"
           footer={
             <Text>
               Help improve Search by allowing Apple to store the searches you
@@ -82,33 +83,6 @@ export default function Page() {
             </Text>
           }
         >
-          <Text>Default</Text>
-          <Form.Text hint="Right">Hint</Form.Text>
-          <Text
-            onPress={() => {
-              console.log("Hey");
-            }}
-          >
-            Pressable
-          </Text>
-
-          <Text style={{ fontWeight: "bold", color: AC.systemPink }}>
-            Custom style
-          </Text>
-          <Form.Text bold>Bold</Form.Text>
-
-          <View>
-            <Text>Wrapped</Text>
-          </View>
-
-          {/* Table style: | A   B |*/}
-          <Form.HStack>
-            <Text style={Form.FormFont.default}>Foo</Text>
-            <View style={{ flex: 1 }} />
-            <Text style={Form.FormFont.secondary}>Bar</Text>
-          </Form.HStack>
-        </Form.Section>
-        <Form.Section title="Links">
           {/* Table style: | A   B |*/}
           <Link href="/two">Next</Link>
 
@@ -160,6 +134,34 @@ export default function Page() {
           >
             Icon inherits link color
           </Form.Link>
+        </Form.Section>
+
+        <Form.Section title="Form Items">
+          <Text>Default</Text>
+          <Form.Text hint="Right">Hint</Form.Text>
+          <Text
+            onPress={() => {
+              console.log("Hey");
+            }}
+          >
+            Pressable
+          </Text>
+
+          <Text style={{ fontWeight: "bold", color: AC.systemPink }}>
+            Custom style
+          </Text>
+          <Form.Text bold>Bold</Form.Text>
+
+          <View>
+            <Text>Wrapped</Text>
+          </View>
+
+          {/* Table style: | A   B |*/}
+          <Form.HStack>
+            <Text style={Form.FormFont.default}>Foo</Text>
+            <View style={{ flex: 1 }} />
+            <Text style={Form.FormFont.secondary}>Bar</Text>
+          </Form.HStack>
         </Form.Section>
 
         <Form.Section title="Table">

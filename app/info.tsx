@@ -5,7 +5,7 @@ import { Text, View } from "react-native";
 
 export default function Page() {
   return (
-    <Form.List navigationTitle="Info">
+    <Form.List navigationTitle="Bottom Sheet">
       <Form.Section
         title="Vision"
         footer={

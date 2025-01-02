@@ -54,22 +54,22 @@ export default function Page() {
       </Form.Section>
 
       <Form.Section title="Upcoming automatic updates">
-        <Form.Text hint={"8"}>Update All</Form.Text>
+        <Form.Text hint="3">Update All</Form.Text>
 
-        <AppUpdate />
-        <AppUpdate />
-        <AppUpdate />
+        <AppUpdate icon="https://github.com/expo.png" name="Expo Go" />
+        <AppUpdate icon="https://github.com/facebook.png" name="Facebook" />
+        <AppUpdate icon="https://github.com/apple.png" name="Apple" />
       </Form.Section>
     </Form.List>
   );
 }
 
-function AppUpdate() {
+function AppUpdate({ name, icon }: { name: string; icon: string }) {
   return (
     <View style={{ gap: 16, flex: 1 }}>
       <Form.HStack style={{ gap: 16 }}>
         <Image
-          source={{ uri: "https://github.com/evanbacon.png" }}
+          source={{ uri: icon }}
           style={{
             aspectRatio: 1,
             height: 48,
@@ -77,7 +77,7 @@ function AppUpdate() {
           }}
         />
         <View style={{ gap: 4 }}>
-          <Form.Text style={Form.FormFont.default}>Evan's world</Form.Text>
+          <Form.Text style={Form.FormFont.default}>{name}</Form.Text>
           <Form.Text style={Form.FormFont.caption}>Today</Form.Text>
         </View>
 
@@ -85,7 +85,8 @@ function AppUpdate() {
 
         <IconSymbol
           color={AC.systemBlue}
-          name="person.fill.badge.plus"
+          name="icloud.and.arrow.down"
+          weight="bold"
           size={24}
         />
       </Form.HStack>
