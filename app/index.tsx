@@ -65,6 +65,12 @@ export default function Page() {
               color={AC.systemBlue}
               name="person.fill.badge.plus"
               size={24}
+              animationSpec={{
+                effect: {
+                  type: "pulse",
+                },
+                repeating: true,
+              }}
             />
           </Form.HStack>
         </Form.Section>

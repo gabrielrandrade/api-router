@@ -31,10 +31,10 @@ export default function Page() {
       </Form.Section>
 
       <Form.Section>
-        <Form.Link href="/apps">Apps</Form.Link>
-        <Form.Link href="/subscriptions">Subscriptions</Form.Link>
-        <Form.Link href="/purchase-history">Purchase History</Form.Link>
-        <Form.Link href="/notifications">Notifications</Form.Link>
+        <Form.Link href="/">Apps</Form.Link>
+        <Form.Link href="/">Subscriptions</Form.Link>
+        <Form.Link href="/">Purchase History</Form.Link>
+        <Form.Link href="/">Notifications</Form.Link>
       </Form.Section>
 
       <Form.Section>
@@ -50,7 +50,7 @@ export default function Page() {
       </Form.Section>
 
       <Form.Section>
-        <Form.Link href="/personalized">Personalized Recommendations</Form.Link>
+        <Form.Link href="/">Personalized Recommendations</Form.Link>
       </Form.Section>
 
       <Form.Section title="Upcoming automatic updates">
