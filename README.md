@@ -9,7 +9,7 @@ Components that I use in Expo Router apps that are generally optimized for iOS, 
 For best results, just copy the files to another project. Here are the other deps:
 
 ```
-bunx expo install @bacons/apple-colors expo-web-browser expo-symbols expo-blur vaul
+bunx expo install @bacons/apple-colors expo-web-browser expo-symbols expo-blur vaul @react-native-segmented-control/segmented-control
 ```
 
 ## Stack
@@ -287,3 +287,38 @@ Avoid using `<StatusBar>` on iOS as the system has built-in support for changing
 ```
 
 > This won't work as expected in Expo Go. Use a dev client to understand the behavior better.
+
+## Segments
+
+> `npx expo install @react-native-segmented-control/segmented-control`
+
+For tabbed content that doesn't belong in the router, use the `Segment` component:
+
+```tsx
+import {
+  Segments,
+  SegmentsList,
+  SegmentsContent,
+  SegmentsTrigger,
+} from "@/components/ui/Segments";
+
+export default function Page() {
+  return (
+    <Segments defaultValue="account">
+      <SegmentsList>
+        <SegmentsTrigger value="account">Account</SegmentsTrigger>
+        <SegmentsTrigger value="password">Password</SegmentsTrigger>
+      </SegmentsList>
+
+      <SegmentsContent value="account">
+        <Text>Account Section</Text>
+      </SegmentsContent>
+      <SegmentsContent value="password">
+        <Text>Password Section</Text>
+      </SegmentsContent>
+    </Segments>
+  );
+}
+```
+
+This can be used with React Server Components as the API is entirely declarative.

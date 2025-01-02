@@ -1,14 +1,51 @@
 import * as Form from "@/components/ui/Form";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import {
+  Segments,
+  SegmentsList,
+  SegmentsContent,
+  SegmentsTrigger,
+} from "@/components/ui/Segments";
 import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
 import { ComponentProps } from "react";
 import { Image, OpaqueColorValue, Text, View } from "react-native";
 
+function SegmentsTest() {
+  return (
+    <View style={{ flex: 1 }}>
+      <Segments defaultValue="account">
+        <SegmentsList>
+          <SegmentsTrigger value="account">Account</SegmentsTrigger>
+          <SegmentsTrigger value="password">Password</SegmentsTrigger>
+        </SegmentsList>
+
+        <SegmentsContent value="account">
+          <Form.List style={{ backgroundColor: "transparent" }}>
+            <Form.Section>
+              <Text>Account Section</Text>
+            </Form.Section>
+          </Form.List>
+        </SegmentsContent>
+        <SegmentsContent value="password">
+          <Form.List style={{ backgroundColor: "transparent" }}>
+            <Form.Section>
+              <Text>Password Section</Text>
+            </Form.Section>
+          </Form.List>
+        </SegmentsContent>
+      </Segments>
+    </View>
+  );
+}
+
 export default function Page() {
   return (
     <View style={{ flex: 1, maxWidth: 650, marginHorizontal: "auto" }}>
       <Form.List navigationTitle="Settings">
+        <Form.Section>
+          <SegmentsTest />
+        </Form.Section>
         <Form.Section>
           <View style={{ alignItems: "center", gap: 8, padding: 16, flex: 1 }}>
             <Image
