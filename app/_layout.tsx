@@ -30,7 +30,7 @@ export default function Layout() {
             presentation: "modal",
 
             headerRight: () => (
-              <Form.Link bold href="/" dismissTo>
+              <Form.Link headerRight bold href="/" dismissTo>
                 Done
               </Form.Link>
             ),

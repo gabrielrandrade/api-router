@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, View, StyleSheet } from "react-native";
+import { Platform } from "react-native";
 import {
   useNavigationBuilder,
   createNavigatorFactory,
@@ -11,7 +11,6 @@ import {
 import {
   NativeStackView,
   NativeStackNavigationOptions,
-  NativeStackNavigationHelpers,
 } from "@react-navigation/native-stack";
 import { Drawer } from "vaul";
 import { withLayoutContext } from "expo-router";
@@ -58,8 +57,7 @@ function MyModalStackNavigator({
     useNavigationBuilder<
       StackNavigationState<ParamListBase>,
       MyModalStackRouterOptions,
-      MyModalStackNavigationOptions,
-      NativeStackNavigationHelpers
+      MyModalStackNavigationOptions
     >(StackRouter, {
       children,
       screenOptions,
@@ -89,7 +87,7 @@ function MyModalStackView({
   descriptors,
 }: {
   state: StackNavigationState<ParamListBase>;
-  navigation: NativeStackNavigationHelpers;
+  navigation: any;
   descriptors: Record<
     string,
     {
@@ -142,14 +140,8 @@ function MyModalStackView({
       {isWeb &&
         state.routes.map((route, i) => {
           const descriptor = descriptors[route.key];
-          const {
-            presentation,
-            sheetAllowedDetents,
-            sheetInitialDetentIndex,
-            sheetGrabberVisible,
-          } = descriptor.options || {};
-
-          const couldHaveDetents = presentation === "formSheet";
+          const { presentation, sheetAllowedDetents, sheetGrabberVisible } =
+            descriptor.options || {};
 
           const isModalType =
             presentation === "modal" ||
@@ -162,12 +154,6 @@ function MyModalStackView({
           // Convert numeric detents (e.g. 0.5 => "50%") to a string
           // If user passes pixel or percentage strings, we'll keep them as is.
           const rawDetents = sheetAllowedDetents || [1];
-          const snapPoints = rawDetents.map((val) => {
-            // if (typeof val === "number") {
-            //   return val >= 1 ? "100%" : `${val * 100}%`;
-            // }
-            return val; // e.g. "148px", "50%", etc.
-          });
 
           return (
             <Drawer.Root
@@ -175,7 +161,7 @@ function MyModalStackView({
               open={true}
               fadeFromIndex={0}
               // Provide snap points to vaul
-              snapPoints={snapPoints}
+              snapPoints={rawDetents}
               // For a "sheet" style, might want to scale background slightly
               shouldScaleBackground={presentation !== "formSheet"}
               onOpenChange={(open) => {
@@ -216,7 +202,8 @@ function MyModalStackView({
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        backgroundColor: AC.systemGroupedBackground,
+                        backgroundColor:
+                          AC.systemGroupedBackground as unknown as string,
                       }}
                     >
                       <div
@@ -224,7 +211,7 @@ function MyModalStackView({
                           width: 36,
                           height: 4,
                           borderRadius: 2,
-                          backgroundColor: AC.separator,
+                          backgroundColor: AC.separator as unknown as string,
                         }}
                       />
                     </div>
@@ -240,16 +227,6 @@ function MyModalStackView({
     </div>
   );
 }
-
-const styles = StyleSheet.create({
-  grabber: {
-    alignSelf: "center",
-    width: 36,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: "#ccc",
-  },
-});
 
 const createMyModalStack = createNavigatorFactory(MyModalStackNavigator);
 
