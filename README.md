@@ -328,8 +328,8 @@ This can be used with React Server Components as the API is entirely declarative
 
 ## Toggle
 
-| Light | Dark |
-| <img src="https://github.com/user-attachments/assets/d5e3f9b4-2fdb-453e-9acb-0d77539ca1ed" width="256px"> | <img src="https://github.com/user-attachments/assets/ad13d3a8-0c51-4408-8890-3bb3b5444f80" width="256px"> |
+<img src="https://github.com/user-attachments/assets/d5e3f9b4-2fdb-453e-9acb-0d77539ca1ed" width="256px"> 
+<img src="https://github.com/user-attachments/assets/ad13d3a8-0c51-4408-8890-3bb3b5444f80" width="256px">
 
 Add a toggle switch item using `hint` and `Switch` from React Native:
 
