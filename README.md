@@ -290,7 +290,8 @@ Avoid using `<StatusBar>` on iOS as the system has built-in support for changing
 
 ## Segments
 
-<img width="427" alt="Screenshot 2025-01-02 at 3 15 33 PM" src="https://github.com/user-attachments/assets/178a1eff-83e4-4a37-9c1b-530ef9f9c7e8" />
+![Simulator Screenshot - iPhone 16 Pro Max - 2025-01-03 at 12 36 02](https://github.com/user-attachments/assets/9d8990a9-2852-48c2-9097-50e8632d9704)
+![Simulator Screenshot - iPhone 16 Pro Max - 2025-01-03 at 12 35 55](https://github.com/user-attachments/assets/4677a69e-4ec7-4f2f-b539-babc9d907998)
 
 > `npx expo install @react-native-segmented-control/segmented-control`
 
@@ -327,7 +328,18 @@ This can be used with React Server Components as the API is entirely declarative
 
 ## Toggle
 
-Add a toggle switch item:
+![Simulator Screenshot - iPhone 16 Pro Max - 2025-01-03 at 12 36 02](https://github.com/user-attachments/assets/d5e3f9b4-2fdb-453e-9acb-0d77539ca1ed)
+
+![toggle](https://github.com/user-attachments/assets/ad13d3a8-0c51-4408-8890-3bb3b5444f80)
+
+
+Add a toggle switch item using `hint` and `Switch` from React Native:
+
+```tsx
+<Form.Text hint={<Switch />}>Label</Form.Text>
+```
+
+You can also build the item manually for more customization:
 
 ```tsx
 <Form.HStack>
@@ -337,8 +349,3 @@ Add a toggle switch item:
 </Form.HStack>
 ```
 
-You can also use the `hint` prop to right-align the switch:
-
-```tsx
-<Form.Text hint={<Switch />}>Label</Form.Text>
-```
