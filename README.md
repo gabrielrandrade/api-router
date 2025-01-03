@@ -290,8 +290,8 @@ Avoid using `<StatusBar>` on iOS as the system has built-in support for changing
 
 ## Segments
 
-![Simulator Screenshot - iPhone 16 Pro Max - 2025-01-03 at 12 36 02](https://github.com/user-attachments/assets/9d8990a9-2852-48c2-9097-50e8632d9704)
-![Simulator Screenshot - iPhone 16 Pro Max - 2025-01-03 at 12 35 55](https://github.com/user-attachments/assets/4677a69e-4ec7-4f2f-b539-babc9d907998)
+<img src="https://github.com/user-attachments/assets/9d8990a9-2852-48c2-9097-50e8632d9704" width="256px"> 
+<img src="https://github.com/user-attachments/assets/4677a69e-4ec7-4f2f-b539-babc9d907998" width="256px">
 
 > `npx expo install @react-native-segmented-control/segmented-control`
 
