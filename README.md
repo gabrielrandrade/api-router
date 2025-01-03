@@ -9,7 +9,7 @@ Components that I use in Expo Router apps that are generally optimized for iOS, 
 For best results, just copy the files to another project. Here are the other deps:
 
 ```
-bunx expo install @bacons/apple-colors expo-web-browser expo-symbols expo-blur vaul @react-native-segmented-control/segmented-control
+bunx expo install expo-haptics expo-symbols expo-blur expo-web-browser @bacons/apple-colors vaul @react-native-segmented-control/segmented-control
 ```
 
 ## Stack

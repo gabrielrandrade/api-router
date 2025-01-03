@@ -23,7 +23,7 @@ export default function Page() {
       <Stack.Screen options={{ title: "App Icon" }} />
       <ScrollView horizontal contentContainerStyle={{ padding: 24, gap: 32 }}>
         {icons.map((icon) => (
-          <TouchableBounce key={icon} onPress={() => {}}>
+          <TouchableBounce sensory key={icon} onPress={() => {}}>
             <View
               style={{
                 borderCurve: "continuous",
