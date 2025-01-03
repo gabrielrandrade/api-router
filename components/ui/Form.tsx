@@ -14,6 +14,7 @@ import {
   TouchableHighlight,
   View,
   ViewProps,
+  StyleSheet,
   ViewStyle,
 } from "react-native";
 import { BodyScrollView } from "./BodyScrollView";
@@ -45,41 +46,6 @@ export const List = forwardRef<
   );
 });
 
-const ListItemPaddingContext = React.createContext<
-  | [
-      // top, left, bottom, right
-      number,
-      number,
-      number,
-      number
-    ]
-  | undefined
->(undefined);
-
-export function EnsurePadding({ children }: { children: React.ReactNode }) {
-  const c = React.useContext(ListItemPaddingContext);
-  if (!c) {
-    const v = 11;
-    const h = 20;
-    const padding = [v, h, v, h] as const;
-    return (
-      <ListItemPaddingContext.Provider value={padding}>
-        <View
-          style={{
-            paddingTop: padding[0],
-            paddingLeft: padding[1],
-            paddingBottom: padding[2],
-            paddingRight: padding[3],
-          }}
-        >
-          {children}
-        </View>
-      </ListItemPaddingContext.Provider>
-    );
-  }
-  return <>{children}</>;
-}
-
 export function HStack(props: ViewProps) {
   return (
     <View
@@ -98,6 +64,13 @@ export function HStack(props: ViewProps) {
 
 const minItemHeight = 20;
 
+const styles = StyleSheet.create({
+  itemPadding: {
+    paddingVertical: 11,
+    paddingHorizontal: 20,
+  },
+});
+
 export const FormItem = forwardRef<
   typeof TouchableHighlight,
   Pick<ViewProps, "children"> & { href?: Href<any>; onPress?: () => void }
@@ -105,9 +78,9 @@ export const FormItem = forwardRef<
   if (href == null) {
     if (onPress == null) {
       return (
-        <EnsurePadding>
+        <View style={styles.itemPadding}>
           <HStack style={{ minHeight: minItemHeight }}>{children}</HStack>
-        </EnsurePadding>
+        </View>
       );
     }
     return (
@@ -116,9 +89,9 @@ export const FormItem = forwardRef<
         underlayColor={AppleColors.systemGray4}
         onPress={onPress}
       >
-        <EnsurePadding>
+        <View style={styles.itemPadding}>
           <HStack style={{ minHeight: minItemHeight }}>{children}</HStack>
-        </EnsurePadding>
+        </View>
       </TouchableHighlight>
     );
   }
@@ -126,9 +99,9 @@ export const FormItem = forwardRef<
   return (
     <Link asChild href={href} onPress={onPress}>
       <TouchableHighlight ref={ref} underlayColor={AppleColors.systemGray4}>
-        <EnsurePadding>
+        <View style={styles.itemPadding}>
           <HStack style={{ minHeight: minItemHeight }}>{children}</HStack>
-        </EnsurePadding>
+        </View>
       </TouchableHighlight>
     </Link>
   );
