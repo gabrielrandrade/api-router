@@ -328,10 +328,8 @@ This can be used with React Server Components as the API is entirely declarative
 
 ## Toggle
 
-![Simulator Screenshot - iPhone 16 Pro Max - 2025-01-03 at 12 36 02](https://github.com/user-attachments/assets/d5e3f9b4-2fdb-453e-9acb-0d77539ca1ed)
-
-![toggle](https://github.com/user-attachments/assets/ad13d3a8-0c51-4408-8890-3bb3b5444f80)
-
+| Light | Dark |
+| <img src="https://github.com/user-attachments/assets/d5e3f9b4-2fdb-453e-9acb-0d77539ca1ed" width="256px"> | <img src="https://github.com/user-attachments/assets/ad13d3a8-0c51-4408-8890-3bb3b5444f80" width="256px"> |
 
 Add a toggle switch item using `hint` and `Switch` from React Native:
 
@@ -348,4 +346,3 @@ You can also build the item manually for more customization:
   <Switch />
 </Form.HStack>
 ```
-
