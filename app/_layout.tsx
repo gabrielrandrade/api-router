@@ -1,8 +1,10 @@
 import Stack from "@/components/ui/Stack";
 import ThemeProvider from "@/components/ui/ThemeProvider";
 import { Text, View } from "react-native";
+import * as AC from "@bacons/apple-colors";
 
 import * as Form from "@/components/ui/Form";
+import { IconSymbol } from "@/components/ui/IconSymbol";
 
 export const unstable_settings = {
   initialRouteName: "index",
@@ -21,6 +23,25 @@ export default function Layout() {
               </Form.Link>
             ),
             headerLargeTitle: true,
+          }}
+        />
+        <Stack.Screen
+          name="icon"
+          sheet
+          options={{
+            // Quarter sheet with no pulling allowed
+            headerTransparent: false,
+            sheetGrabberVisible: false,
+            sheetAllowedDetents: [0.25],
+            headerRight: () => (
+              <Form.Link headerRight href="/" dismissTo>
+                <IconSymbol
+                  name="xmark.circle.fill"
+                  color={AC.systemGray}
+                  size={28}
+                />
+              </Form.Link>
+            ),
           }}
         />
         <Stack.Screen name="info" sheet />
