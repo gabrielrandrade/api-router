@@ -48,17 +48,22 @@ export default function Page() {
           </View>
         </Form.Section>
 
+        <Form.Section title="Features">
+          <Form.Link href="/icon">Icon</Form.Link>
+        </Form.Section>
+
         <Form.Section title="Toggle">
           <Form.HStack>
-            <Form.Text>Label</Form.Text>
+            <Form.Text>Manual</Form.Text>
             <View style={{ flex: 1 }} />
             <Switch />
           </Form.HStack>
-          <Form.Text hint={<Switch />}>Hint</Form.Text>
-        </Form.Section>
-
-        <Form.Section title="Features">
-          <Form.Link href="/icon">Icon</Form.Link>
+          <Form.Text bold hint={<Switch />}>
+            Hint
+          </Form.Text>
+          <Form.Text systemImage={"light.beacon.min"} hint={<Switch />}>
+            System Image
+          </Form.Text>
         </Form.Section>
 
         <Form.Section
