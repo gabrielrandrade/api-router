@@ -9,7 +9,7 @@ import {
 import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
 import { ComponentProps } from "react";
-import { Image, OpaqueColorValue, Text, View } from "react-native";
+import { Image, OpaqueColorValue, Switch, Text, View } from "react-native";
 
 export default function Page() {
   return (
@@ -46,6 +46,15 @@ export default function Page() {
               </Form.Link>
             </Form.Text>
           </View>
+        </Form.Section>
+
+        <Form.Section title="Toggle">
+          <Form.HStack>
+            <Form.Text>Label</Form.Text>
+            <View style={{ flex: 1 }} />
+            <Switch />
+          </Form.HStack>
+          <Form.Text hint={<Switch />}>Hint</Form.Text>
         </Form.Section>
 
         <Form.Section title="Features">

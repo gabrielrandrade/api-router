@@ -324,3 +324,21 @@ export default function Page() {
 ```
 
 This can be used with React Server Components as the API is entirely declarative.
+
+## Toggle
+
+Add a toggle switch item:
+
+```tsx
+<Form.HStack>
+  <Form.Text>Label</Form.Text>
+  <View style={{ flex: 1 }} />
+  <Switch />
+</Form.HStack>
+```
+
+You can also use the `hint` prop to right-align the switch:
+
+```tsx
+<Form.Text hint={<Switch />}>Label</Form.Text>
+```
