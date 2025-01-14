@@ -21,6 +21,7 @@ const MAPPING = {
   "car.fill": "directions-car",
   "airpodspro.chargingcase.wireless.fill": "headset",
   "person.fill.badge.plus": "person-add",
+  "light.beacon.min": "bluetooth-searching",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

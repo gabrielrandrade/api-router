@@ -1,3 +1,5 @@
+import React from "react";
+
 import * as Form from "@/components/ui/Form";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import {
@@ -10,6 +12,29 @@ import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
 import { ComponentProps } from "react";
 import { Image, OpaqueColorValue, Switch, Text, View } from "react-native";
+
+function Switches() {
+  const [on, setOn] = React.useState(false);
+
+  return (
+    <Form.Section title="Toggle">
+      <Form.HStack>
+        <Form.Text>Manual</Form.Text>
+        <View style={{ flex: 1 }} />
+        <Switch value={on} onValueChange={setOn} />
+      </Form.HStack>
+      <Form.Text bold hint={<Switch value={on} onValueChange={setOn} />}>
+        Hint
+      </Form.Text>
+      <Form.Text
+        systemImage={"light.beacon.min"}
+        hint={<Switch value={on} onValueChange={setOn} />}
+      >
+        System Image
+      </Form.Text>
+    </Form.Section>
+  );
+}
 
 export default function Page() {
   return (
@@ -52,19 +77,7 @@ export default function Page() {
           <Form.Link href="/icon">Icon</Form.Link>
         </Form.Section>
 
-        <Form.Section title="Toggle">
-          <Form.HStack>
-            <Form.Text>Manual</Form.Text>
-            <View style={{ flex: 1 }} />
-            <Switch />
-          </Form.HStack>
-          <Form.Text bold hint={<Switch />}>
-            Hint
-          </Form.Text>
-          <Form.Text systemImage={"light.beacon.min"} hint={<Switch />}>
-            System Image
-          </Form.Text>
-        </Form.Section>
+        <Switches />
 
         <Form.Section
           title="Segments"
