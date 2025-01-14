@@ -417,11 +417,19 @@ export function Section({
       })();
 
       child = React.cloneElement(child, {
-        style: [FormFont.default, child.props.style],
+        style: [
+          FormFont.default,
+          process.env.EXPO_OS === "web" && {
+            alignItems: "stretch",
+            flexDirection: "column",
+            display: "flex",
+          },
+          child.props.style,
+        ],
         dynamicTypeRamp: "body",
         numberOfLines: 1,
         adjustsFontSizeToFit: true,
-        asChild: true,
+        asChild: process.env.EXPO_OS !== "web",
         children: (
           <FormItem>
             <HStack>

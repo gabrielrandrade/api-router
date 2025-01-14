@@ -22,7 +22,6 @@ export default function Layout() {
                 <Avatar />
               </Form.Link>
             ),
-            headerLargeTitle: true,
           }}
         />
         <Stack.Screen
