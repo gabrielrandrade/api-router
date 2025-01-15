@@ -601,7 +601,7 @@ export type IconSymbolName = keyof typeof MAPPING;
  *
  * Icon `name`s are based on SFSymbols and require manual mapping to MaterialCommunityIcons.
  */
-export function IconSymbol({
+export function IconSymbolMaterial({
   name,
   size = 24,
   color,

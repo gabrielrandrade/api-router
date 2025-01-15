@@ -11,7 +11,15 @@ import {
 import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
 import { ComponentProps } from "react";
-import { Image, OpaqueColorValue, Switch, Text, View } from "react-native";
+import {
+  Button,
+  Image,
+  OpaqueColorValue,
+  Switch,
+  Text,
+  View,
+} from "react-native";
+import { ContentUnavailable } from "@/components/ui/ContentUnavailable";
 
 function Switches() {
   const [on, setOn] = React.useState(false);
@@ -184,6 +192,25 @@ export default function Page() {
           >
             Icon inherits link color
           </Form.Link>
+        </Form.Section>
+
+        <Form.Section title="Unavailable">
+          <ContentUnavailable internet actions={<Button title="Refresh" />} />
+
+          <ContentUnavailable search />
+          <ContentUnavailable search="123" />
+          <ContentUnavailable
+            title="No content"
+            systemImage="car"
+            description="Could not find"
+          />
+
+          <ContentUnavailable
+            title="Custom Unavailable"
+            systemImage={
+              <IconSymbol name="0.square" size={45} color={AC.systemPink} />
+            }
+          />
         </Form.Section>
 
         <Form.Section title="Form Items">
