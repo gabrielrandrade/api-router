@@ -351,6 +351,8 @@ You can also build the item manually for more customization:
 
 > Similar to SwiftUI's [`ContentUnavailableView`](https://developer.apple.com/documentation/swiftui/contentunavailableview).
 
+https://github.com/user-attachments/assets/6f3b7baa-3c65-4959-8b84-b585045ef03e
+
 For empty states, use the `<ContentUnavailable />` component.
 
 There are three main uses:
