@@ -81,23 +81,6 @@ export default function Page() {
           </View>
         </Form.Section>
 
-        <Form.Section title="Unavailable">
-          <ContentUnavailable search />
-          <ContentUnavailable search="123" />
-          <ContentUnavailable
-            title="No content"
-            systemImage="car"
-            description="Could not find"
-          />
-
-          <ContentUnavailable
-            title="Connection issue"
-            systemImage="wifi.slash"
-            description="Check your internet connection"
-            actions={<Button title="Refresh" />}
-          />
-        </Form.Section>
-
         <Form.Section title="Features">
           <Form.Link href="/icon">Icon</Form.Link>
         </Form.Section>
@@ -209,6 +192,25 @@ export default function Page() {
           >
             Icon inherits link color
           </Form.Link>
+        </Form.Section>
+
+        <Form.Section title="Unavailable">
+          <ContentUnavailable internet actions={<Button title="Refresh" />} />
+
+          <ContentUnavailable search />
+          <ContentUnavailable search="123" />
+          <ContentUnavailable
+            title="No content"
+            systemImage="car"
+            description="Could not find"
+          />
+
+          <ContentUnavailable
+            title="Custom Unavailable"
+            systemImage={
+              <IconSymbol name="0.square" size={45} color={AC.systemPink} />
+            }
+          />
         </Form.Section>
 
         <Form.Section title="Form Items">
