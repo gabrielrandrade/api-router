@@ -87,7 +87,7 @@ export function ContentUnavailable({
             color: AC.label,
             textAlign: "center",
             fontWeight: "bold",
-            fontSize: 16,
+            fontSize: 17,
           }}
         >
           {resolvedTitle}
@@ -95,7 +95,11 @@ export function ContentUnavailable({
         {resolvedDescription && (
           <Text
             dynamicTypeRamp="body"
-            style={{ color: AC.secondaryLabel, textAlign: "center" }}
+            style={{
+              color: AC.secondaryLabel,
+              fontSize: 16,
+              textAlign: "center",
+            }}
           >
             {resolvedDescription}
           </Text>
