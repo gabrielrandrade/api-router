@@ -11,7 +11,14 @@ import {
 import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
 import { ComponentProps } from "react";
-import { Image, OpaqueColorValue, Switch, Text, View } from "react-native";
+import {
+  Button,
+  Image,
+  OpaqueColorValue,
+  Switch,
+  Text,
+  View,
+} from "react-native";
 import { ContentUnavailable } from "@/components/ui/ContentUnavailable";
 
 function Switches() {
@@ -81,6 +88,13 @@ export default function Page() {
             title="No content"
             systemImage="car"
             description="Could not find"
+          />
+
+          <ContentUnavailable
+            title="Connection issue"
+            systemImage="wifi.slash"
+            description="Check your internet connection"
+            actions={<Button title="Refresh" />}
           />
         </Form.Section>
 

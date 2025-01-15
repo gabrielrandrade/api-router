@@ -40,7 +40,7 @@ export function ContentUnavailable({
     <View
       style={{
         flex: 1,
-        gap: 4,
+        gap: 6,
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -54,17 +54,33 @@ export function ContentUnavailable({
       ) : (
         resolvedSystemImage
       )}
-      <Text
-        dynamicTypeRamp="title1"
-        style={{ color: AC.label, fontWeight: "bold", fontSize: 16 }}
+      <View
+        style={{
+          gap: 4,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        {resolvedTitle}
-      </Text>
-      {resolvedDescription && (
-        <Text dynamicTypeRamp="body" style={{ color: AC.secondaryLabel }}>
-          {resolvedDescription}
+        <Text
+          dynamicTypeRamp="title1"
+          style={{
+            color: AC.label,
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 16,
+          }}
+        >
+          {resolvedTitle}
         </Text>
-      )}
+        {resolvedDescription && (
+          <Text
+            dynamicTypeRamp="body"
+            style={{ color: AC.secondaryLabel, textAlign: "center" }}
+          >
+            {resolvedDescription}
+          </Text>
+        )}
+      </View>
       {actions}
     </View>
   );
