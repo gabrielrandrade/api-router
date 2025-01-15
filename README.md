@@ -346,3 +346,20 @@ You can also build the item manually for more customization:
   <Switch />
 </Form.HStack>
 ```
+
+## Content Unavailable
+
+> Similar to SwiftUI's [`ContentUnavailableView`](https://developer.apple.com/documentation/swiftui/contentunavailableview).
+
+For empty states, use the `<ContentUnavailable />` component.
+
+There are three main uses:
+
+1. No search results: `<ContentUnavailable search />`. Use search as a string to show the invalid query `<ContentUnavailable search="my query" />`.
+2. No internet connection: `<ContentUnavailable internet />`. This shows an animated no connection screen.
+3. Everything else. Use `title`, `description`, and `systemImage` to customize the message. `<ContentUnavailable title="No content" systemImage="car" description="Could not find car" />`
+
+Other info:
+
+- The `systemImage` can be the name of an SF Symbol or a React node. This is useful for custom/animated icons.
+- `actions` can be provided for a list of buttons to render under the content, e.g. `<ContentUnavailable internet actions={<Button title="Refresh" />} />`
