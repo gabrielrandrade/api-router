@@ -12,6 +12,7 @@ import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
 import { ComponentProps } from "react";
 import { Image, OpaqueColorValue, Switch, Text, View } from "react-native";
+import { ContentUnavailable } from "@/components/ui/ContentUnavailable";
 
 function Switches() {
   const [on, setOn] = React.useState(false);
@@ -71,6 +72,16 @@ export default function Page() {
               </Form.Link>
             </Form.Text>
           </View>
+        </Form.Section>
+
+        <Form.Section title="Unavailable">
+          <ContentUnavailable search />
+          <ContentUnavailable search="123" />
+          <ContentUnavailable
+            title="No content"
+            systemImage="car"
+            description="Could not find"
+          />
         </Form.Section>
 
         <Form.Section title="Features">
