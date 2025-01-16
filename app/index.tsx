@@ -200,11 +200,10 @@ export default function Page() {
           <ContentUnavailable search />
           <ContentUnavailable search="123" />
           <ContentUnavailable
-            title="No content"
+            title="Car Not Found"
             systemImage="car"
-            description="Could not find"
+            description="Dude, where's my car?"
           />
-
           <ContentUnavailable
             title="Custom Unavailable"
             systemImage={

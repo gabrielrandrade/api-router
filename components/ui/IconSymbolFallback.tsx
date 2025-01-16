@@ -12,6 +12,7 @@ const MAPPING = {
   // See SF Symbols in the SF Symbols app on Mac.
 
   "chevron.left.forwardslash.chevron.right": "code-tags",
+  car: "car-outline",
   "car.fill": "car",
   "light.beacon.min": "alarm-light-outline",
   "airpodspro.chargingcase.wireless.fill": "headset",
