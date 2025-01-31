@@ -20,6 +20,7 @@ import {
   View,
 } from "react-native";
 import { ContentUnavailable } from "@/components/ui/ContentUnavailable";
+import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
 function Switches() {
   const [on, setOn] = React.useState(false);
@@ -80,20 +81,16 @@ export default function Page() {
             </Form.Text>
           </View>
         </Form.Section>
-
         <Form.Section title="Features">
           <Form.Link href="/icon">Icon</Form.Link>
         </Form.Section>
-
         <Switches />
-
         <Form.Section
           title="Segments"
           footer="Render tabbed content declaratively"
         >
           <SegmentsTest />
         </Form.Section>
-
         <Form.Section>
           <Form.HStack style={{ gap: 16 }}>
             <Image
@@ -126,7 +123,6 @@ export default function Page() {
             />
           </Form.HStack>
         </Form.Section>
-
         <Form.Section
           title="Links"
           footer={
@@ -161,7 +157,6 @@ export default function Page() {
             Hint + Link
           </Form.Link>
         </Form.Section>
-
         <Form.Section title="Icons">
           <Form.Link href="/two" systemImage="star">
             Link + Icon
@@ -193,7 +188,6 @@ export default function Page() {
             Icon inherits link color
           </Form.Link>
         </Form.Section>
-
         <Form.Section title="Unavailable">
           <ContentUnavailable internet actions={<Button title="Refresh" />} />
 
@@ -211,7 +205,6 @@ export default function Page() {
             }
           />
         </Form.Section>
-
         <Form.Section title="Form Items">
           <Text>Default</Text>
           <Form.Text hint="Right">Hint</Form.Text>
@@ -239,7 +232,6 @@ export default function Page() {
             <Text style={Form.FormFont.secondary}>Bar</Text>
           </Form.HStack>
         </Form.Section>
-
         <Form.Section title="Table">
           {/* Table style: | A   B |*/}
           <Form.Text hint="Expo Router v4">SDK 52</Form.Text>

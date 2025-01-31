@@ -17,7 +17,7 @@ const DEFAULT_STACK_HEADER: NativeStackNavigationOptions =
         headerLargeStyle: {
           backgroundColor: "transparent",
         },
-        headerLargeTitle: false,
+        headerLargeTitle: true,
       };
 
 /** Create a bottom sheet on iOS with extra snap points (`sheetAllowedDetents`) */
