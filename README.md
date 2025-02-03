@@ -12,6 +12,12 @@ For best results, just copy the files to another project. Here are the other dep
 bunx expo install expo-haptics expo-symbols expo-blur expo-web-browser @bacons/apple-colors vaul @react-native-segmented-control/segmented-control
 ```
 
+You can also just bootstrap a project with this repo:
+
+```
+bunx create-expo -t https://github.com/EvanBacon/expo-router-forms-components
+```
+
 ## Stack
 
 Use the correct stack header settings for peak iOS defaults:
