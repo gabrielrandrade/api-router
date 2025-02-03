@@ -21,30 +21,36 @@ export default function Page() {
 
   return (
     <Form.List ref={ref} navigationTitle="Bottom Sheet" listStyle="grouped">
-      <Stack.Screen
-        options={{
-          headerLeft: () => (
-            <View
-              style={{
-                overflow: "hidden",
-                paddingBottom: 10,
-                marginBottom: -10,
-              }}
-            >
-              <Animated.View style={style}>
-                <Text
-                  style={{ color: AC.label, fontWeight: "bold", fontSize: 20 }}
-                >
-                  Bottom Sheet
-                </Text>
-              </Animated.View>
-            </View>
-          ),
-          headerTitle() {
-            return <></>;
-          },
-        }}
-      />
+      {process.env.EXPO_OS !== "web" && (
+        <Stack.Screen
+          options={{
+            headerLeft: () => (
+              <View
+                style={{
+                  overflow: "hidden",
+                  paddingBottom: 10,
+                  marginBottom: -10,
+                }}
+              >
+                <Animated.View style={style}>
+                  <Text
+                    style={{
+                      color: AC.label,
+                      fontWeight: "bold",
+                      fontSize: 20,
+                    }}
+                  >
+                    Bottom Sheet
+                  </Text>
+                </Animated.View>
+              </View>
+            ),
+            headerTitle() {
+              return <></>;
+            },
+          }}
+        />
+      )}
 
       <Form.Section
         title="Vision"

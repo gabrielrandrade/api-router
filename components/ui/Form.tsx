@@ -156,6 +156,7 @@ export const Text = React.forwardRef<
 >(({ bold, ...props }, ref) => {
   const font: TextStyle = {
     ...FormFont.default,
+    flexShrink: 0,
     fontWeight: bold ? "600" : "normal",
   };
 
