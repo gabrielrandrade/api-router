@@ -336,8 +336,6 @@ Create a linkable version like this:
 
 ## List Style
 
-![Simulator Screenshot - iPhone 16 - 2025-02-02 at 22 12 25](https://github.com/user-attachments/assets/30ce1836-117c-4989-ac59-f4359766ba8b)
-
 The default `listStyle` is `"auto"` but you can access the old-style with `"grouped"`:
 
 ```tsx
@@ -349,6 +347,9 @@ The default `listStyle` is `"auto"` but you can access the old-style with `"grou
   </Form.Section>
 </Form.List>
 ```
+
+![Simulator Screenshot - iPhone 16 - 2025-02-02 at 22 12 25](https://github.com/user-attachments/assets/30ce1836-117c-4989-ac59-f4359766ba8b)
+
 
 ## Colors
 
