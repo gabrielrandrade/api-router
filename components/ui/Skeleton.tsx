@@ -2,10 +2,11 @@
 
 import React from "react";
 import {
-  View,
-  StyleSheet,
   Animated,
   Easing,
+  StyleProp,
+  StyleSheet,
+  View,
   ViewStyle,
   useColorScheme,
 } from "react-native";
@@ -69,10 +70,11 @@ const Skeleton = ({
   delay,
   dark: inputDark,
 }: {
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   delay?: number;
   dark?: boolean;
 } = {}) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const dark = inputDark ?? useColorScheme() !== "light";
   const translateX = React.useRef(new Animated.Value(-1)).current;
   const [width, setWidth] = React.useState(150);
@@ -103,7 +105,7 @@ const Skeleton = ({
     return () => {
       anim.stop();
     };
-  }, [translateX]);
+  }, [translateX, delay]);
 
   const translateXStyle = React.useMemo(
     () => ({
