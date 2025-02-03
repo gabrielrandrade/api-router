@@ -82,10 +82,36 @@ export default function Page() {
         </Form.Section>
         <Form.Section title="Features">
           <Form.Link href="/icon">Icon</Form.Link>
-          {/* <Form.Text hint="Long hint with extra content that should float below the content">
-            Hint
-          </Form.Text> */}
         </Form.Section>
+
+        <Form.Section title="Right text">
+          <Form.Text hint="Long hint with extra content that should float below the content">
+            Hint
+          </Form.Text>
+
+          {/* Custom */}
+          <Form.HStack>
+            <Form.Text>Opening</Form.Text>
+            {/* Spacer */}
+            <View style={{ flex: 1 }} />
+            {/* Right */}
+            <Form.Text style={{ flexShrink: 1, color: AC.secondaryLabel }}>
+              Long list of text that should wrap around when it gets too long
+            </Form.Text>
+          </Form.HStack>
+
+          {/* Custom with wrap-below */}
+          <Form.HStack style={{ flexWrap: "wrap" }}>
+            <Form.Text>Opening</Form.Text>
+            {/* Spacer */}
+            <View style={{ flex: 1 }} />
+            {/* Right */}
+            <Form.Text style={{ flexShrink: 1, color: AC.secondaryLabel }}>
+              Long list of text that should wrap around when it gets too long
+            </Form.Text>
+          </Form.HStack>
+        </Form.Section>
+
         <Switches />
         <Form.Section
           title="Segments"

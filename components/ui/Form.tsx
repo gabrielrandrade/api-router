@@ -58,6 +58,9 @@ export function HStack(props: ViewProps) {
           flex: 1,
           flexDirection: "row",
           alignItems: "center",
+          gap: 8,
+          wordWrap: "break-word",
+          // flexWrap: "wrap",
         },
         props
       )}
@@ -333,7 +336,14 @@ export function Section({
           }
           if (typeof child === "string") {
             return (
-              <RNText dynamicTypeRamp="body" style={FormFont.secondary}>
+              <RNText
+                dynamicTypeRamp="body"
+                style={{
+                  ...FormFont.secondary,
+                  textAlign: "right",
+                  flexShrink: 1,
+                }}
+              >
                 {child}
               </RNText>
             );
