@@ -6,20 +6,8 @@ export default function Layout() {
   return (
     <ThemeProvider>
       <Tabs>
-        <Tabs.Screen
-          name="(index)"
-          systemImage="house"
-          options={{
-            title: "Home",
-          }}
-        />
-        <Tabs.Screen
-          name="(info)"
-          systemImage="brain.fill"
-          options={{
-            title: "Info",
-          }}
-        />
+        <Tabs.Screen name="(index)" systemImage="house.fill" title="Home" />
+        <Tabs.Screen name="(info)" systemImage="brain.fill" title="Info" />
       </Tabs>
     </ThemeProvider>
   );

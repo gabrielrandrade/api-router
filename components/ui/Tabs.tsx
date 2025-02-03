@@ -33,14 +33,15 @@ export default function Tabs({
 }: React.ComponentProps<typeof NativeTabs>) {
   const processedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      const { systemImage, ...props } = child.props;
-      if (systemImage) {
+      const { systemImage, title, ...props } = child.props;
+      if (systemImage || title != null) {
         return React.cloneElement(child, {
           ...props,
           options: {
-            tabBarIcon: (props: any) => (
-              <IconSymbol {...props} name={systemImage} />
-            ),
+            tabBarIcon: !systemImage
+              ? undefined
+              : (props: any) => <IconSymbol {...props} name={systemImage} />,
+            title,
             ...props.options,
           },
         });
@@ -65,6 +66,8 @@ Tabs.Screen = NativeTabs.Screen as React.FC<
   React.ComponentProps<typeof NativeTabs.Screen> & {
     /** Add a system image for the tab icon. */
     systemImage?: IconSymbolName;
+    /** Set the title of the icon. */
+    title?: string;
   }
 >;
 
