@@ -1,11 +1,12 @@
 import React from "react";
 
+import { ContentUnavailable } from "@/components/ui/ContentUnavailable";
 import * as Form from "@/components/ui/Form";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import {
   Segments,
-  SegmentsList,
   SegmentsContent,
+  SegmentsList,
   SegmentsTrigger,
 } from "@/components/ui/Segments";
 import * as AC from "@bacons/apple-colors";
@@ -19,8 +20,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { ContentUnavailable } from "@/components/ui/ContentUnavailable";
-import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
 function Switches() {
   const [on, setOn] = React.useState(false);

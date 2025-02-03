@@ -46,6 +46,8 @@ export const List = forwardRef<
   );
 });
 
+if (__DEV__) List.displayName = "FormList";
+
 export function HStack(props: ViewProps) {
   return (
     <View
@@ -149,6 +151,8 @@ export const Text = React.forwardRef<
   );
 });
 
+if (__DEV__) Text.displayName = "FormText";
+
 export const Link = React.forwardRef<
   typeof RouterLink,
   LinkProps & {
@@ -244,6 +248,8 @@ export const Link = React.forwardRef<
     />
   );
 });
+
+if (__DEV__) Link.displayName = "FormLink";
 
 export const FormFont = {
   // From inspecting SwiftUI `List { Text("Foo") }` in Xcode.

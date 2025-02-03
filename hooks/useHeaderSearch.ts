@@ -29,7 +29,7 @@ export function useHeaderSearch(options: Omit<SearchBarProps, "ref"> = {}) {
       headerShown: true,
       headerSearchBarOptions: interceptedOptions,
     });
-  }, [options]);
+  }, [options, navigation]);
 
   return search;
 }
