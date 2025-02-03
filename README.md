@@ -259,6 +259,8 @@ Customize the color, size, etc:
 
 ## Hint and wrapping
 
+<img width="409" alt="Screenshot 2025-02-02 at 9 37 09 PM" src="https://github.com/user-attachments/assets/fd057783-1b76-4317-9425-cc0aae0baf97" />
+
 The key here is to use flexShrink to support floating to the right, then wrapping correctly when the text gets too long.
 
 Use flexWrap to position the text below the title when it gets too long.
