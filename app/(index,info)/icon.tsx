@@ -1,7 +1,6 @@
 import Stack from "@/components/ui/Stack";
 import TouchableBounce from "@/components/ui/TouchableBounce";
-import * as AC from "@bacons/apple-colors";
-import { Image, ScrollView, useColorScheme, View } from "react-native";
+import { Image, ScrollView, View } from "react-native";
 
 import MaskedView from "@react-native-masked-view/masked-view";
 
@@ -75,38 +74,6 @@ export default function Page() {
           </TouchableBounce>
         ))}
       </ScrollView>
-      <SideGradient />
-      <SideGradient right />
     </>
-  );
-}
-
-function SideGradient({ right }: { right?: boolean }) {
-  const isDark = useColorScheme() === "dark";
-  return (
-    <View
-      style={{
-        width: 20,
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        ...(right ? { right: 0 } : { left: 0 }),
-        [backgroundImage]: [
-          {
-            type: "linearGradient",
-            direction: `to ${right ? "left" : "right"}`,
-            colorStops: [
-              { color: AC.secondarySystemBackground, positions: ["0%"] },
-              {
-                color: isDark
-                  ? "rgba(28.05, 28.05, 30.6, 0)"
-                  : "rgba(242.25, 242.25, 247.35, 0)",
-                positions: ["100%"],
-              },
-            ],
-          },
-        ],
-      }}
-    />
   );
 }

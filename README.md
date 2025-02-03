@@ -87,6 +87,27 @@ This sets custom options for [React Native Screens](https://github.com/software-
 - Use `sheetAllowedDetents` to change the snap points of the sheet.
 - Change the corder radius with `sheetCornerRadius: 48`.
 
+## Tabs
+
+The custom tabs adds blurry backgrounds and haptics on iOS. You can also use the shortcut `systemImage` to set the icon.
+
+```tsx
+import ThemeProvider from "@/components/ui/ThemeProvider";
+
+import Tabs from "@/components/ui/Tabs";
+
+export default function Layout() {
+  return (
+    <ThemeProvider>
+      <Tabs>
+        <Tabs.Screen name="(index)" systemImage="house.fill" title="Home" />
+        <Tabs.Screen name="(info)" systemImage="brain.fill" title="Info" />
+      </Tabs>
+    </ThemeProvider>
+  );
+}
+```
+
 ## Forms
 
 Start lists with a `<Form.List>` and add sections with `<Form.Section>`. Setting `navigationTitle="Settings"` will update the title of the stack header.
