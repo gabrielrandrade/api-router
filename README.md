@@ -334,6 +334,20 @@ Create a linkable version like this:
 </Form.Link>
 ```
 
+## List Style
+
+The default `listStyle` is `"auto"` but you can access the old-style with `"grouped"`:
+
+```tsx
+<Form.List listStyle="grouped">
+  <Form.Section title="Developer">
+    <Form.Link target="_blank" href="https://evanbacon.dev">
+      Evan Bacon
+    </Form.Link>
+  </Form.Section>
+</Form.List>
+```
+
 ## Colors
 
 Be sure to use `@bacons/apple-colors` for high-quality P3 colors.

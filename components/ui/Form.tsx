@@ -22,11 +22,16 @@ import {
 import { BodyScrollView } from "./BodyScrollView";
 import { HeaderButton } from "./Header";
 
+type ListStyle = "grouped" | "auto";
+
+const ListStyleContext = React.createContext<ListStyle>("auto");
+
 export const List = forwardRef<
   any,
   ScrollViewProps & {
     /** Set the Expo Router `<Stack />` title when mounted. */
     navigationTitle?: string;
+    listStyle?: ListStyle;
   }
 >(({ contentContainerStyle, ...props }, ref) => {
   return (
@@ -34,17 +39,24 @@ export const List = forwardRef<
       {props.navigationTitle && (
         <Stack.Screen options={{ title: props.navigationTitle }} />
       )}
-      <BodyScrollView
-        ref={ref}
-        contentContainerStyle={mergedStyleProp(
-          {
-            padding: 16,
-            gap: 24,
-          },
-          contentContainerStyle
-        )}
-        {...props}
-      />
+      <ListStyleContext.Provider value={props.listStyle ?? "auto"}>
+        <BodyScrollView
+          ref={ref}
+          contentContainerStyle={mergedStyleProp(
+            {
+              paddingVertical: 16,
+              gap: 24,
+              maxWidth: 650,
+            },
+            contentContainerStyle
+          )}
+          style={{
+            marginHorizontal:
+              process.env.EXPO_OS === "web" ? "auto" : undefined,
+          }}
+          {...props}
+        />
+      </ListStyleContext.Provider>
     </>
   );
 });
@@ -284,11 +296,14 @@ export function Section({
   children,
   title,
   footer,
+
   ...props
 }: ViewProps & {
   title?: string | React.ReactNode;
   footer?: string | React.ReactNode;
 }) {
+  const listStyle = React.useContext(ListStyleContext) ?? "auto";
+
   const childrenWithSeparator = React.Children.map(children, (child, index) => {
     if (!React.isValidElement(child)) {
       return child;
@@ -498,24 +513,45 @@ export function Section({
     <View
       {...props}
       style={[
-        {
-          borderCurve: "continuous",
-          overflow: "hidden",
-          borderRadius: 10,
-          backgroundColor: Colors.secondarySystemGroupedBackground,
-        },
+        listStyle === "grouped"
+          ? {
+              backgroundColor: Colors.secondarySystemGroupedBackground,
+              borderTopWidth: 0.5,
+              borderBottomWidth: 0.5,
+              borderColor: Colors.separator,
+            }
+          : {
+              borderCurve: "continuous",
+              overflow: "hidden",
+              borderRadius: 10,
+              backgroundColor: Colors.secondarySystemGroupedBackground,
+            },
         props.style,
       ]}
       children={childrenWithSeparator}
     />
   );
 
+  const padding = listStyle === "grouped" ? 0 : 16;
+
   if (!title && !footer) {
-    return contents;
+    return (
+      <View
+        style={{
+          paddingHorizontal: padding,
+        }}
+      >
+        {contents}
+      </View>
+    );
   }
 
   return (
-    <View>
+    <View
+      style={{
+        paddingHorizontal: padding,
+      }}
+    >
       {title && (
         <RNText
           dynamicTypeRamp="footnote"

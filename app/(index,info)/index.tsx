@@ -46,7 +46,7 @@ function Switches() {
 
 export default function Page() {
   return (
-    <View style={{ flex: 1, maxWidth: 650, marginHorizontal: "auto" }}>
+    <View style={{ flex: 1 }}>
       <Form.List navigationTitle="Settings">
         <Form.Section>
           <View style={{ alignItems: "center", gap: 8, padding: 16, flex: 1 }}>

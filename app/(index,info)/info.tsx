@@ -20,7 +20,7 @@ export default function Page() {
   }));
 
   return (
-    <Form.List ref={ref} navigationTitle="Bottom Sheet">
+    <Form.List ref={ref} navigationTitle="Bottom Sheet" listStyle="grouped">
       <Stack.Screen
         options={{
           headerTitle() {
