@@ -257,6 +257,42 @@ Customize the color, size, etc:
 </Form.Link>
 ```
 
+## Hint and wrapping
+
+The key here is to use flexShrink to support floating to the right, then wrapping correctly when the text gets too long.
+
+Use flexWrap to position the text below the title when it gets too long.
+
+```tsx
+<Form.Section title="Right text">
+  <Form.Text hint="Long hint with extra content that should float below the content">
+    Hint
+  </Form.Text>
+
+  {/* Custom */}
+  <Form.HStack>
+    <Form.Text>Opening</Form.Text>
+    {/* Spacer */}
+    <View style={{ flex: 1 }} />
+    {/* Right */}
+    <Form.Text style={{ flexShrink: 1, color: AC.secondaryLabel }}>
+      Long list of text that should wrap around when it gets too long
+    </Form.Text>
+  </Form.HStack>
+
+  {/* Custom with wrap-below */}
+  <Form.HStack style={{ flexWrap: "wrap" }}>
+    <Form.Text>Opening</Form.Text>
+    {/* Spacer */}
+    <View style={{ flex: 1 }} />
+    {/* Right */}
+    <Form.Text style={{ flexShrink: 1, color: AC.secondaryLabel }}>
+      Long list of text that should wrap around when it gets too long
+    </Form.Text>
+  </Form.HStack>
+</Form.Section>
+```
+
 ## Form Description and Item
 
 Add a list item with an image and text + description combo:
