@@ -177,8 +177,11 @@ export const Link = React.forwardRef<
   LinkProps & {
     /** Value displayed on the right side of the form item. */
     hint?: React.ReactNode;
-    /** Adds a prefix SF Symbol image to the left of the text */
+    /** Adds a prefix SF Symbol image to the left of the text. */
     systemImage?: SystemImageProps;
+
+    /** Changes the right icon. */
+    hintImage?: SystemImageProps;
 
     // TODO: Automatically detect this somehow.
     /** Is the link inside a header. */
@@ -186,7 +189,7 @@ export const Link = React.forwardRef<
 
     bold?: boolean;
   }
->(({ bold, children, headerRight, ...props }, ref) => {
+>(({ bold, children, headerRight, hintImage, ...props }, ref) => {
   const font: TextStyle = {
     ...FormFont.default,
     fontWeight: bold ? "600" : "normal",
@@ -297,7 +300,6 @@ export function Section({
   children,
   title,
   footer,
-
   ...props
 }: ViewProps & {
   title?: string | React.ReactNode;
@@ -490,7 +492,10 @@ export function Section({
               <View style={{ flex: 1 }} />
               {hintView}
               <View style={{ paddingLeft: 12 }}>
-                <LinkChevronIcon href={resolvedProps.href} />
+                <LinkChevronIcon
+                  href={resolvedProps.href}
+                  systemImage={resolvedProps.hintImage}
+                />
               </View>
             </HStack>
           </FormItem>
@@ -498,7 +503,7 @@ export function Section({
       });
     }
     // Ensure child is a FormItem otherwise wrap it in a FormItem
-    if (!wrapsFormItem && child.type !== FormItem) {
+    if (!wrapsFormItem && !child.props.custom && child.type !== FormItem) {
       child = <FormItem onPress={originalOnPress}>{child}</FormItem>;
     }
 
@@ -587,24 +592,38 @@ export function Section({
   );
 }
 
-function LinkChevronIcon({ href }: { href?: any }) {
+function LinkChevronIcon({
+  href,
+  systemImage,
+}: {
+  href?: any;
+  systemImage?: SystemImageProps;
+}) {
   const isHrefExternal =
     typeof href === "string" && /^([\w\d_+.-]+:)?\/\//.test(href);
 
   const size = process.env.EXPO_OS === "ios" ? 14 : 24;
-  if (isHrefExternal) {
+
+  if (systemImage && typeof systemImage !== "string") {
     return (
       <IconSymbol
-        name="arrow.up.right"
-        size={size}
-        weight="bold"
-        color={AppleColors.tertiaryLabel}
+        name={systemImage.name}
+        size={systemImage.size ?? size}
+        color={systemImage.color ?? AppleColors.tertiaryLabel}
       />
     );
   }
+
+  const resolvedName =
+    typeof systemImage === "string"
+      ? systemImage
+      : isHrefExternal
+      ? "arrow.up.right"
+      : "chevron.right";
+
   return (
     <IconSymbol
-      name="chevron.right"
+      name={resolvedName}
       size={size}
       weight="bold"
       // from xcode, not sure which color is the exact match

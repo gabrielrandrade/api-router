@@ -80,8 +80,15 @@ export default function Page() {
             </Form.Text>
           </View>
         </Form.Section>
+
         <Form.Section title="Features">
           <Form.Link href="/icon">Icon</Form.Link>
+        </Form.Section>
+
+        <Form.Section>
+          <Form.HStack style={{ alignItems: "stretch", gap: 12 }}>
+            <TripleItemTest />
+          </Form.HStack>
         </Form.Section>
 
         <Form.Section title="Hints">
@@ -267,8 +274,97 @@ export default function Page() {
             <Text style={Form.FormFont.secondary}>Expo Router v3</Text>
           </Form.HStack>
         </Form.Section>
+
+        <Form.Section>
+          <Form.Text hint="Jan 31, 2025">Release Date</Form.Text>
+          <Form.Text hint="3.6 (250)">Version</Form.Text>
+
+          <FormExpandable
+            hint="Requires visionOS 1.0 or later and iOS 17.5 or later. Compatible with iPhone, iPad, and Apple Vision."
+            preview="Works on this iPhone"
+            custom
+          >
+            Compatibility
+          </FormExpandable>
+        </Form.Section>
+
+        <Form.Section
+          title={
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+                color: AC.label,
+                textTransform: "none",
+              }}
+            >
+              Developer
+            </Text>
+          }
+        >
+          <Form.Link
+            href="https://github.com/evanbacon"
+            target="_blank"
+            hintImage={{
+              name: "hand.raised.fill",
+              color: AC.systemBlue,
+              size: 20,
+            }}
+            style={{ color: AC.systemBlue }}
+          >
+            Developer Privacy Policy
+          </Form.Link>
+          <Button
+            title="Stop Testing"
+            color={AC.systemRed}
+            onPress={() => {}}
+          />
+        </Form.Section>
       </Form.List>
     </View>
+  );
+}
+
+function FormExpandable({
+  children,
+  hint,
+  preview,
+}: {
+  custom: true;
+  children?: React.ReactNode;
+  hint?: string;
+  preview?: string;
+}) {
+  const [open, setOpen] = React.useState(false);
+
+  // TODO: If the entire preview can fit, then just skip the hint.
+
+  return (
+    <Form.FormItem onPress={() => setOpen(!open)}>
+      <Form.HStack style={{ flexWrap: "wrap" }}>
+        <Form.Text>{children}</Form.Text>
+        {/* Spacer */}
+        <View style={{ flex: 1 }} />
+        {open && (
+          <IconSymbol
+            name={open ? "chevron.up" : "chevron.down"}
+            size={16}
+            color={AC.systemGray}
+          />
+        )}
+        {/* Right */}
+        <Form.Text style={{ flexShrink: 1, color: AC.secondaryLabel }}>
+          {open ? hint : preview}
+        </Form.Text>
+        {!open && (
+          <IconSymbol
+            name={open ? "chevron.up" : "chevron.down"}
+            size={16}
+            color={AC.systemGray}
+          />
+        )}
+      </Form.HStack>
+    </Form.FormItem>
   );
 }
 
@@ -290,12 +386,6 @@ function FormLabel({
     </Form.HStack>
   );
 }
-
-// List
-// Link
-// ol
-// ul
-// table -> two columns
 
 function SegmentsTest() {
   return (
@@ -321,6 +411,102 @@ function SegmentsTest() {
           </Form.List>
         </SegmentsContent>
       </Segments>
+    </View>
+  );
+}
+
+function TripleItemTest() {
+  return (
+    <>
+      <HorizontalItem title="Expires" badge="88" subtitle="Days" />
+
+      <View
+        style={{
+          backgroundColor: AC.separator,
+          width: 0.5,
+          maxHeight: "50%",
+          minHeight: "50%",
+          marginVertical: "auto",
+        }}
+      />
+
+      <HorizontalItem
+        title="Developer"
+        badge={
+          <IconSymbol
+            name="person.text.rectangle"
+            size={28}
+            weight="bold"
+            animationSpec={{
+              effect: {
+                type: "pulse",
+              },
+              repeating: true,
+            }}
+            color={AC.secondaryLabel}
+          />
+        }
+        subtitle="Evan Bacon"
+      />
+
+      <View
+        style={{
+          backgroundColor: AC.separator,
+          width: 0.5,
+          maxHeight: "50%",
+          minHeight: "50%",
+          marginVertical: "auto",
+        }}
+      />
+
+      <HorizontalItem title="Version" badge="3.6" subtitle="Build 250" />
+    </>
+  );
+}
+
+function HorizontalItem({
+  title,
+  badge,
+  subtitle,
+}: {
+  title: string;
+  badge: React.ReactNode;
+  subtitle: string;
+}) {
+  return (
+    <View style={{ alignItems: "center", gap: 4, flex: 1 }}>
+      <Form.Text
+        style={{
+          textTransform: "uppercase",
+          fontSize: 10,
+          fontWeight: "600",
+          color: AC.secondaryLabel,
+        }}
+      >
+        {title}
+      </Form.Text>
+      {typeof badge === "string" ? (
+        <Form.Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            color: AC.secondaryLabel,
+          }}
+        >
+          {badge}
+        </Form.Text>
+      ) : (
+        badge
+      )}
+
+      <Form.Text
+        style={{
+          fontSize: 12,
+          color: AC.secondaryLabel,
+        }}
+      >
+        {subtitle}
+      </Form.Text>
     </View>
   );
 }

@@ -17,6 +17,7 @@ const MAPPING = {
   "light.beacon.min": "alarm-light-outline",
   "airpodspro.chargingcase.wireless.fill": "headset",
   "cursorarrow.rays": "cursor-default-click-outline",
+  "person.text.rectangle": "account-box-outline",
 
   // From: https://github.com/roninoss/icons/blob/05c6ec9eda6c1be50f29577946d7cf778df1501c/packages/icons/src/icon-mapping.ts#L1
   "square.and.arrow.up": "tray-arrow-up",
