@@ -8,7 +8,7 @@ import { OpaqueColorValue, StyleProp, TextStyle } from "react-native";
 
 // Add your SFSymbol to MaterialCommunityIcons mappings here.
 const MAPPING = {
-  // See MaterialCommunityIcons here: https://icons.expo.fyi
+  // See MaterialCommunityIcons here: https://icons.expo.app
   // See SF Symbols in the SF Symbols app on Mac.
 
   "chevron.left.forwardslash.chevron.right": "code-tags",
@@ -18,6 +18,29 @@ const MAPPING = {
   "airpodspro.chargingcase.wireless.fill": "headset",
   "cursorarrow.rays": "cursor-default-click-outline",
   "person.text.rectangle": "account-box-outline",
+  "hand.raised.fill": "hand-front-left",
+  "0.square": "numeric-0-box-outline",
+  "0.square.fill": "numeric-0-box",
+  "1.square": "numeric-1-box-outline",
+  "1.square.fill": "numeric-1-box",
+  "2.square": "numeric-2-box-outline",
+  "2.square.fill": "numeric-2-box",
+  "3.square": "numeric-3-box-outline",
+  "3.square.fill": "numeric-3-box",
+  "4.square": "numeric-4-box-outline",
+  "4.square.fill": "numeric-4-box",
+  "5.square": "numeric-5-box-outline",
+  "5.square.fill": "numeric-5-box",
+  "6.square": "numeric-6-box-outline",
+  "6.square.fill": "numeric-6-box",
+  "7.square": "numeric-7-box-outline",
+  "7.square.fill": "numeric-7-box",
+  "8.square": "numeric-8-box-outline",
+  "8.square.fill": "numeric-8-box",
+  "9.square": "numeric-9-box-outline",
+  "9.square.fill": "numeric-9-box",
+  "10.square": "numeric-10-box-outline",
+  "10.square.fill": "numeric-10-box",
 
   // From: https://github.com/roninoss/icons/blob/05c6ec9eda6c1be50f29577946d7cf778df1501c/packages/icons/src/icon-mapping.ts#L1
   "square.and.arrow.up": "tray-arrow-up",
