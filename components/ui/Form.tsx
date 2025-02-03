@@ -1,3 +1,5 @@
+"use client";
+
 import { IconSymbol, IconSymbolName } from "@/components/ui/IconSymbol";
 import * as AppleColors from "@bacons/apple-colors";
 import { Href, LinkProps, Link as RouterLink, Stack } from "expo-router";
@@ -559,9 +561,6 @@ function LinkChevronIcon({ href }: { href?: any }) {
         name="arrow.up.right"
         size={size}
         weight="bold"
-        // from xcode, not sure which color is the exact match
-        // #BFBFBF
-        // #9D9DA0
         color={AppleColors.tertiaryLabel}
       />
     );
