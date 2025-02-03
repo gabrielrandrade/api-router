@@ -15,7 +15,7 @@ export default function Page() {
   const scroll = useScrollViewOffset(ref);
   const style = useAnimatedStyle(() => ({
     transform: [
-      { translateY: interpolate(scroll.value, [-100, 0], [50, 0], "clamp") },
+      { translateY: interpolate(scroll.value, [-120, -70], [50, 0], "clamp") },
     ],
   }));
 
@@ -23,15 +23,12 @@ export default function Page() {
     <Form.List ref={ref} navigationTitle="Bottom Sheet" listStyle="grouped">
       <Stack.Screen
         options={{
-          headerTitle() {
-            return <></>;
-          },
           headerLeft: () => (
             <View
               style={{
                 overflow: "hidden",
-                paddingBottom: 14,
-                marginBottom: -14,
+                paddingBottom: 10,
+                marginBottom: -10,
               }}
             >
               <Animated.View style={style}>
@@ -43,6 +40,9 @@ export default function Page() {
               </Animated.View>
             </View>
           ),
+          headerTitle() {
+            return <></>;
+          },
         }}
       />
 

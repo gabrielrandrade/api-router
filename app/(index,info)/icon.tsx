@@ -40,37 +40,56 @@ export default function Page() {
               />
             </View>
 
-            <MaskedView
-              style={{
-                transform: [{ translateY: 12 }],
-              }}
-              maskElement={
-                <View
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    width: "100%",
-                    height: "100%",
-                    [backgroundImage]: `linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%)`,
-                  }}
-                />
-              }
-            >
+            {process.env.EXPO_OS === "web" ? (
               <Image
                 source={{ uri: icon }}
                 style={{
                   borderRadius: 20,
                   aspectRatio: 1,
-                  transform: [{ scaleY: -1 }],
+                  transform: [{ translateY: 12 }, { scaleY: -1 }],
                   width: 72,
                   // TODO: Not supported on iOS yet
                   filter: [{ blur: 10 }],
+
+                  // Add gradient mask
+                  maskImage:
+                    "linear-gradient(to top, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%)",
                 }}
               />
-            </MaskedView>
+            ) : (
+              <MaskedView
+                style={{
+                  height: 72,
+                  transform: [{ translateY: 12 }],
+                }}
+                maskElement={
+                  <View
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      width: "100%",
+                      height: "100%",
+                      [backgroundImage]: `linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%)`,
+                    }}
+                  />
+                }
+              >
+                <Image
+                  source={{ uri: icon }}
+                  style={{
+                    borderRadius: 20,
+                    aspectRatio: 1,
+                    transform: [{ scaleY: -1 }],
+                    width: 72,
+                    // TODO: Not supported on iOS yet
+                    filter: [{ blur: 10 }],
+                  }}
+                />
+              </MaskedView>
+            )}
           </TouchableBounce>
         ))}
       </ScrollView>

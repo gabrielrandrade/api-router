@@ -33,7 +33,7 @@ export default function Layout({ segment }: { segment: string }) {
         />
       );
     } else {
-      return <Stack.Screen name={screenName} sheet />;
+      return <Stack.Screen name={screenName} />;
     }
   }, [screenName]);
 
@@ -95,7 +95,7 @@ function Avatar() {
       <Text
         style={{
           color: "white",
-          fontFamily: "ui-rounded",
+          fontFamily: process.env.EXPO_OS === "ios" ? "ui-rounded" : undefined,
           fontSize: 14,
           textAlign: "center",
           fontWeight: "bold",

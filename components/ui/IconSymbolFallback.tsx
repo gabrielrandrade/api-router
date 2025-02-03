@@ -1,7 +1,7 @@
 // This file is a fallback for using MaterialCommunityIcons on Android and web.
 
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { SymbolWeight } from "expo-symbols";
 import React from "react";
 import { OpaqueColorValue, StyleProp, TextStyle } from "react-native";
@@ -16,6 +16,7 @@ const MAPPING = {
   "car.fill": "car",
   "light.beacon.min": "alarm-light-outline",
   "airpodspro.chargingcase.wireless.fill": "headset",
+  "cursorarrow.rays": "cursor-default-click-outline",
 
   // From: https://github.com/roninoss/icons/blob/05c6ec9eda6c1be50f29577946d7cf778df1501c/packages/icons/src/icon-mapping.ts#L1
   "square.and.arrow.up": "tray-arrow-up",
