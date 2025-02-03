@@ -200,6 +200,12 @@ Add a custom press handler to the form item:
 </Form.Text>
 ```
 
+You can also use `<Button />` from React Native similar to SwiftUI:
+
+```tsx
+<Button title="Open" onPress={() => console.log("Pressed")} />
+```
+
 ## Form Link
 
 Open with in-app browser using `target="_blank"` (only works when the `href` is an external URL):

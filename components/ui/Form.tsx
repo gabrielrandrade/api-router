@@ -4,6 +4,7 @@ import { Href, LinkProps, Link as RouterLink, Stack } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import React, { forwardRef } from "react";
 import {
+  Button,
   OpaqueColorValue,
   Text as RNText,
   ScrollViewProps,
@@ -289,26 +290,43 @@ export function Section({
     }
     const isLastChild = index === React.Children.count(children) - 1;
 
+    const resolvedProps = {
+      ...child.props,
+    };
     // Extract onPress from child
-    const originalOnPress = child.props.onPress;
+    const originalOnPress = resolvedProps.onPress;
     let wrapsFormItem = false;
-    // If child is type of Text, add default props
-    if (child.type === RNText || child.type === Text) {
+    if (child.type === Button) {
+      const { title, color } = resolvedProps;
+
+      delete resolvedProps.title;
+      resolvedProps.style = mergedStyleProp(
+        { color: color ?? AppleColors.link },
+        resolvedProps.style
+      );
+      child = <RNText {...resolvedProps}>{title}</RNText>;
+    }
+
+    if (
+      // If child is type of Text, add default props
+      child.type === RNText ||
+      child.type === Text
+    ) {
       child = React.cloneElement(child, {
         dynamicTypeRamp: "body",
         numberOfLines: 1,
         adjustsFontSizeToFit: true,
-        ...child.props,
+        ...resolvedProps,
         onPress: undefined,
-        style: [FormFont.default, child.props.style],
+        style: mergedStyleProp(FormFont.default, resolvedProps.style),
       });
 
       const hintView = (() => {
-        if (!child.props.hint) {
+        if (!resolvedProps.hint) {
           return null;
         }
 
-        return React.Children.map(child.props.hint, (child) => {
+        return React.Children.map(resolvedProps.hint, (child) => {
           // Filter out empty children
           if (!child) {
             return null;
@@ -325,14 +343,14 @@ export function Section({
       })();
 
       const symbolView = (() => {
-        if (!child.props.systemImage) {
+        if (!resolvedProps.systemImage) {
           return null;
         }
 
         const symbolProps =
-          typeof child.props.systemImage === "string"
-            ? { name: child.props.systemImage }
-            : child.props.systemImage;
+          typeof resolvedProps.systemImage === "string"
+            ? { name: resolvedProps.systemImage }
+            : resolvedProps.systemImage;
 
         return (
           <IconSymbol
@@ -341,7 +359,7 @@ export function Section({
             style={{ marginRight: 16 }}
             color={
               symbolProps.color ??
-              extractStyle(child.props.style, "color") ??
+              extractStyle(resolvedProps.style, "color") ??
               AppleColors.label
             }
           />
@@ -362,7 +380,7 @@ export function Section({
       wrapsFormItem = true;
 
       const wrappedTextChildren = React.Children.map(
-        child.props.children,
+        resolvedProps.children,
         (linkChild) => {
           // Filter out empty children
           if (!linkChild) {
@@ -372,7 +390,7 @@ export function Section({
             return (
               <RNText
                 dynamicTypeRamp="body"
-                style={mergedStyles(FormFont.default, child.props)}
+                style={mergedStyles(FormFont.default, resolvedProps)}
               >
                 {linkChild}
               </RNText>
@@ -383,11 +401,11 @@ export function Section({
       );
 
       const hintView = (() => {
-        if (!child.props.hint) {
+        if (!resolvedProps.hint) {
           return null;
         }
 
-        return React.Children.map(child.props.hint, (child) => {
+        return React.Children.map(resolvedProps.hint, (child) => {
           // Filter out empty children
           if (!child) {
             return null;
@@ -400,13 +418,13 @@ export function Section({
       })();
 
       const symbolView = (() => {
-        if (!child.props.systemImage) {
+        if (!resolvedProps.systemImage) {
           return null;
         }
         const symbolProps =
-          typeof child.props.systemImage === "string"
-            ? { name: child.props.systemImage }
-            : child.props.systemImage;
+          typeof resolvedProps.systemImage === "string"
+            ? { name: resolvedProps.systemImage }
+            : resolvedProps.systemImage;
 
         return (
           <IconSymbol
@@ -415,7 +433,7 @@ export function Section({
             style={{ marginRight: 16 }}
             color={
               symbolProps.color ??
-              extractStyle(child.props.style, "color") ??
+              extractStyle(resolvedProps.style, "color") ??
               AppleColors.label
             }
           />
@@ -430,7 +448,7 @@ export function Section({
             flexDirection: "column",
             display: "flex",
           },
-          child.props.style,
+          resolvedProps.style,
         ],
         dynamicTypeRamp: "body",
         numberOfLines: 1,
@@ -444,7 +462,7 @@ export function Section({
               <View style={{ flex: 1 }} />
               {hintView}
               <View style={{ paddingLeft: 12 }}>
-                <LinkChevronIcon href={child.props.href} />
+                <LinkChevronIcon href={resolvedProps.href} />
               </View>
             </HStack>
           </FormItem>

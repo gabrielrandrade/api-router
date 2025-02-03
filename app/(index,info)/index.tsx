@@ -82,6 +82,9 @@ export default function Page() {
         </Form.Section>
         <Form.Section title="Features">
           <Form.Link href="/icon">Icon</Form.Link>
+          {/* <Form.Text hint="Long hint with extra content that should float below the content">
+            Hint
+          </Form.Text> */}
         </Form.Section>
         <Switches />
         <Form.Section
@@ -206,6 +209,13 @@ export default function Page() {
         </Form.Section>
         <Form.Section title="Form Items">
           <Text>Default</Text>
+          <Button
+            title="RN Button"
+            onPress={() => {
+              console.log("Button pressed");
+            }}
+          />
+          <Button title="RN Button + color" color={AC.systemPurple} />
           <Form.Text hint="Right">Hint</Form.Text>
           <Text
             onPress={() => {
