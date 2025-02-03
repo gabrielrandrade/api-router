@@ -1,11 +1,51 @@
 import * as Form from "@/components/ui/Form";
+import Stack from "@/components/ui/Stack";
 import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
+import Animated, {
+  interpolate,
+  useAnimatedRef,
+  useAnimatedStyle,
+  useScrollViewOffset,
+} from "react-native-reanimated";
 
 export default function Page() {
+  const ref = useAnimatedRef();
+  const scroll = useScrollViewOffset(ref);
+  const style = useAnimatedStyle(() => ({
+    transform: [
+      { translateY: interpolate(scroll.value, [-100, 0], [50, 0], "clamp") },
+    ],
+  }));
+
   return (
-    <Form.List navigationTitle="Bottom Sheet">
+    <Form.List ref={ref} navigationTitle="Bottom Sheet">
+      <Stack.Screen
+        options={{
+          headerTitle() {
+            return <></>;
+          },
+          headerLeft: () => (
+            <View
+              style={{
+                overflow: "hidden",
+                paddingBottom: 14,
+                marginBottom: -14,
+              }}
+            >
+              <Animated.View style={style}>
+                <Text
+                  style={{ color: AC.label, fontWeight: "bold", fontSize: 20 }}
+                >
+                  Bottom Sheet
+                </Text>
+              </Animated.View>
+            </View>
+          ),
+        }}
+      />
+
       <Form.Section
         title="Vision"
         footer={

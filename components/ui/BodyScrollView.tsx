@@ -4,10 +4,10 @@ import useMergedRef from "@/hooks/useMergedRef";
 import { useScrollToTop } from "@/hooks/useTabToTop";
 import * as AC from "@bacons/apple-colors";
 import { forwardRef, useRef } from "react";
-import { ScrollView, ScrollViewProps } from "react-native";
-import { useBottomTabOverflow } from "./TabBarBackground";
-
+import { ScrollViewProps } from "react-native";
+import Animated from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useBottomTabOverflow } from "./TabBarBackground";
 
 export const BodyScrollView = forwardRef<any, ScrollViewProps>((props, ref) => {
   const paddingBottom = useBottomTabOverflow();
@@ -22,7 +22,7 @@ export const BodyScrollView = forwardRef<any, ScrollViewProps>((props, ref) => {
   const merged = useMergedRef(scrollRef, ref);
 
   return (
-    <ScrollView
+    <Animated.ScrollView
       scrollToOverflowEnabled
       automaticallyAdjustsScrollIndicatorInsets
       contentInsetAdjustmentBehavior="automatic"
