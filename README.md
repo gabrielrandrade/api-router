@@ -259,11 +259,13 @@ Customize the color, size, etc:
 
 ## Hint and wrapping
 
+Beautifully display a key/value pair with the `hint=""` property. This can also be created manually for extra customization.
+
 <img width="409" alt="Screenshot 2025-02-02 at 9 37 09 PM" src="https://github.com/user-attachments/assets/fd057783-1b76-4317-9425-cc0aae0baf97" />
 
-The key here is to use flexShrink to support floating to the right, then wrapping correctly when the text gets too long.
+The key here is to use `flexShrink` to support floating to the right, then wrapping correctly when the text gets too long.
 
-Use flexWrap to position the text below the title when it gets too long.
+Use `flexWrap` to position the text below the title when it gets too long instead of shifting the title down vertically.
 
 ```tsx
 <Form.Section title="Right text">
