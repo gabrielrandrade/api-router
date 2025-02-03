@@ -9,6 +9,7 @@ import {
   SegmentsList,
   SegmentsTrigger,
 } from "@/components/ui/Segments";
+import Stack from "@/components/ui/Stack";
 import * as AC from "@bacons/apple-colors";
 import { Link } from "expo-router";
 import { ComponentProps } from "react";
@@ -20,6 +21,12 @@ import {
   Text,
   View,
 } from "react-native";
+import Animated, {
+  interpolate,
+  useAnimatedRef,
+  useAnimatedStyle,
+  useScrollViewOffset,
+} from "react-native-reanimated";
 
 function Switches() {
   const [on, setOn] = React.useState(false);
@@ -45,9 +52,74 @@ function Switches() {
 }
 
 export default function Page() {
+  const ref = useAnimatedRef();
+  const scroll = useScrollViewOffset(ref);
+  const style = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(scroll.value, [0, 30], [0, 1], "clamp"),
+      transform: [
+        { translateY: interpolate(scroll.value, [0, 30], [5, 0], "clamp") },
+      ],
+    };
+  });
+
   return (
     <View style={{ flex: 1 }}>
-      <Form.List navigationTitle="Settings">
+      <Stack.Screen
+        options={{
+          headerLargeTitle: false,
+          headerTitle() {
+            if (process.env.EXPO_OS === "web") {
+              return (
+                <Animated.View
+                  style={[
+                    style,
+                    { flexDirection: "row", gap: 12, alignItems: "center" },
+                  ]}
+                >
+                  <Image
+                    source={{ uri: "https://github.com/evanbacon.png" }}
+                    style={[
+                      {
+                        aspectRatio: 1,
+                        height: 30,
+                        borderRadius: 8,
+                        borderWidth: 0.5,
+                        borderColor: AC.separator,
+                      },
+                    ]}
+                  />
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      color: AC.label,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Bacon Components
+                  </Text>
+                </Animated.View>
+              );
+            }
+            return (
+              <Animated.Image
+                source={{ uri: "https://github.com/evanbacon.png" }}
+                style={[
+                  style,
+                  {
+                    aspectRatio: 1,
+                    height: 30,
+                    borderRadius: 8,
+                    borderWidth: 0.5,
+                    borderColor: AC.separator,
+                  },
+                ]}
+              />
+            );
+          },
+        }}
+      />
+      <Form.List ref={ref} navigationTitle="Components">
         <Form.Section>
           <View style={{ alignItems: "center", gap: 8, padding: 16, flex: 1 }}>
             <Image
