@@ -1,91 +1,61 @@
-import Stack from "@/components/ui/Stack";
 import ThemeProvider from "@/components/ui/ThemeProvider";
-import { Text, View } from "react-native";
-import * as AC from "@bacons/apple-colors";
+import { Tabs } from "expo-router";
 
-import * as Form from "@/components/ui/Form";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-
-export const unstable_settings = {
-  initialRouteName: "index",
-};
+import BlurTabBarBackground from "@/components/ui/TabBarBackground.ios";
+import { BottomTabBarButtonProps } from "@react-navigation/bottom-tabs";
+import { PlatformPressable } from "@react-navigation/elements";
+import * as Haptics from "expo-haptics";
+import { Platform } from "react-native";
 
 export default function Layout() {
   return (
     <ThemeProvider>
-      <Stack>
-        <Stack.Screen
-          name="index"
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          tabBarButton: HapticTab,
+          tabBarBackground: BlurTabBarBackground,
+          tabBarStyle: Platform.select({
+            ios: {
+              // Use a transparent background on iOS to show the blur effect
+              position: "absolute",
+            },
+            default: {},
+          }),
+          // tabBarActiveTintColor: AC.systemBlue as any,
+        }}
+      >
+        <Tabs.Screen
+          name="(index)"
           options={{
-            headerRight: () => (
-              <Form.Link headerRight href="/account">
-                <Avatar />
-              </Form.Link>
-            ),
+            title: "Home",
+            tabBarIcon: (props) => <IconSymbol {...props} name="house.fill" />,
           }}
         />
-        <Stack.Screen
-          name="icon"
-          sheet
+        <Tabs.Screen
+          name="(info)"
           options={{
-            // Quarter sheet with no pulling allowed
-            headerTransparent: false,
-            sheetGrabberVisible: false,
-            sheetAllowedDetents: [0.25],
-            headerRight: () => (
-              <Form.Link headerRight href="/" dismissTo>
-                <IconSymbol
-                  name="xmark.circle.fill"
-                  color={AC.systemGray}
-                  size={28}
-                />
-              </Form.Link>
-            ),
+            title: "Info",
+            tabBarIcon: (props) => <IconSymbol {...props} name="brain.fill" />,
           }}
         />
-        <Stack.Screen name="info" sheet />
-        <Stack.Screen
-          name="account"
-          options={{
-            presentation: "modal",
-
-            headerRight: () => (
-              <Form.Link headerRight bold href="/" dismissTo>
-                Done
-              </Form.Link>
-            ),
-          }}
-        />
-      </Stack>
+      </Tabs>
     </ThemeProvider>
   );
 }
 
-function Avatar() {
+function HapticTab(props: BottomTabBarButtonProps) {
   return (
-    <View
-      style={{
-        padding: 6,
-        borderRadius: 99,
-        [process.env.EXPO_OS === "web"
-          ? `backgroundImage`
-          : `experimental_backgroundImage`]: `linear-gradient(to bottom, #A5ABB8, #858994)`,
-        aspectRatio: 1,
-        justifyContent: "center",
-        alignItems: "center",
+    <PlatformPressable
+      {...props}
+      onPressIn={(ev) => {
+        if (process.env.EXPO_OS === "ios") {
+          // Add a soft haptic feedback when pressing down on the tabs.
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        props.onPressIn?.(ev);
       }}
-    >
-      <Text
-        style={{
-          color: "white",
-          fontFamily: "ui-rounded",
-          fontSize: 14,
-          textAlign: "center",
-          fontWeight: "bold",
-        }}
-      >
-        EB
-      </Text>
-    </View>
+    />
   );
 }

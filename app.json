@@ -12,7 +12,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.bacon.bacomponents",
       "infoPlist": {
-        "UIViewControllerBasedStatusBarAppearance": true
+        "UIViewControllerBasedStatusBarAppearance": true,
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
