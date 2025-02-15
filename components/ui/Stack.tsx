@@ -1,6 +1,6 @@
 // import { Stack as NativeStack } from "expo-router";
-import React from "react";
 import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import React from "react";
 
 // Better transitions on web, no changes on native.
 import NativeStack from "@/components/layout/modalNavigator";
@@ -38,12 +38,20 @@ export default function Stack({
 }: React.ComponentProps<typeof NativeStack>) {
   const processedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      const { sheet, ...props } = child.props;
+      const { sheet, modal, ...props } = child.props;
       if (sheet) {
         return React.cloneElement(child, {
           ...props,
           options: {
             ...BOTTOM_SHEET,
+            ...props.options,
+          },
+        });
+      } else if (modal) {
+        return React.cloneElement(child, {
+          ...props,
+          options: {
+            presentation: "modal",
             ...props.options,
           },
         });
@@ -68,5 +76,7 @@ Stack.Screen = NativeStack.Screen as React.FC<
   React.ComponentProps<typeof NativeStack.Screen> & {
     /** Make the sheet open as a bottom sheet with default options on iOS. */
     sheet?: boolean;
+    /** Make the screen open as a modal. */
+    modal?: boolean;
   }
 >;
