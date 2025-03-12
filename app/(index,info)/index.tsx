@@ -16,6 +16,7 @@ export default function Page() {
   async function fetchPosts() {
     const response = await fetch("/api/post");
     const data = await response.json();
+    setPosts(data)
   }
 
   return (
