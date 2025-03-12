@@ -16,4 +16,6 @@ export function GET(request: Request) {
       isLiked: true,
     },
   ];
+
+  return Response.json(data);
 }
